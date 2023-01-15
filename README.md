@@ -21,3 +21,7 @@ Email: sierra.pine@wsu.edu
 ### Caitlin Graves
 ID: 11768945
 Email: caitlin.graves@wsu.edu 
+
+## Naomi Dion-Gokan
+ID: 11755265
+Email: naomi.dion-gokan@wsu.edu
