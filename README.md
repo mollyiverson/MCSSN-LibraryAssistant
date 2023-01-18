@@ -10,7 +10,7 @@ We will develop a library assistant to assist librarians in managing patron serv
 ID: 11775649
 Email: molly.s.iverson@wsu.edu 
 
-### Skyllar Estill
+### Skyllar Estill 
 ID: 11750544
 Email: skyllar.estill@wsu.edu
 
