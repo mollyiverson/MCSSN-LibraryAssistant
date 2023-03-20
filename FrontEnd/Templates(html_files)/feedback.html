@@ -34,27 +34,30 @@
 
     <div id="section03">
         <div class="w3-conatiner w3-center w3-text-white" style="background-color:#6acfca">
-          <h1> Feedback </h1>
+          <h1> Contact Us </h1>
         </div>
-        <form>
+            
+        <!-- Adding the info to get responses -->
+        <form action = "https://formspree.io/f/xlekwdww" method = "POST" >
+          
+          <div class="form-group"> 
           <div class="row">
-            <div class="col">
-              <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-            </div>
-            <div class="col">
-              <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label"></label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-          </div>
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label fw-bold">Message:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-          </div>
     
+            <div class="col">
+                <input type="text" name="full name" class="form-control" placeholder="Full Name" required>
+              </div>
+
+               <div class="col"> 
+                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <textarea placeholder="Your Message" class="form-control" name="Message" required></textarea>
+          </div>
           <button type="submit" class="btn btn-primary">Submit</button>
+
         </form>
       </div>
   
