@@ -4,11 +4,11 @@
 }
 
 .topnav {
-  background-color: rgb(82, 23, 133);
+  background-color: #080e36;
   overflow: hidden;
   display: flex;
-  padding: 20px;
-   justify-content: space-between;
+  padding: 10px;
+  justify-content: space-between;
 }
 
 .topnav a {
@@ -19,13 +19,10 @@
   text-decoration: none;
   font-size: 17px;
   border-radius: 7px;
+  margin-top: 10px;
 }
 
-.logo{
-  color: white;
-  padding-right: 20px;
-  font-size: 32px;
-}
+
 
 /* Change the color of links on hover */
 .topnav a:hover {
@@ -44,7 +41,6 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  /*filter: blur(5px);*/
 }
 
 h1 {
@@ -65,18 +61,19 @@ ul{
 }
 
 .button {
-   background-color: rgb(82, 23, 133);
-   border: none;
-   border-radius: 15px;
-   color: white;
-   padding: 20px 34px;
-   text-decoration: none;
-   display: inline-block;
-   font-size: 18px;
-   margin: 90px 645px;
-   cursor: pointer;
-   box-shadow: 2px 2px black;
- }
+  background-color: #080e36;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  padding: 20px 34px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin: 90px 645px;
+  cursor: pointer;
+  box-shadow: 2px 2px black;
+  
+}
 
 footer{
   width: 100%;
@@ -91,6 +88,7 @@ footer{
 .topnav a:hover {
   background-color: #ddd;
   color: black;
+  margin-top: 10px;
 }
 
 .container {
@@ -120,15 +118,9 @@ footer{
 }
 .container .cord .content {
   padding: 20px;
-  text-align: center;
-  transform: translateY(100px);
-  opacity: 0;
-  transition: 0.5s;
+  text-align: center; 
 }
-.container .cord:hover .content {
-  transform: translateY(0px);
-  opacity: 1;
-}
+
 .container .cord .content h2 {
   position: absolute;
   top: -80px;
@@ -376,12 +368,12 @@ svg {
 .wave {
   animation: wave 3s linear;
   animation-iteration-count:infinite;
-  fill: #a786e3;
+  fill: #080e36;
 }
 
 .drop {
   /*fill: var(--col-deepblue);*/
-  fill: #ab111155;
+  fill: #102951;
   fill-opacity:100%;
   animation: drop 3.2s linear infinite normal;
   /*stroke: var(--col-deepblue);*/
