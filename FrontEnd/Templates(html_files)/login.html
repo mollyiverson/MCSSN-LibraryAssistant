@@ -1,8 +1,6 @@
 <html>
 
 <head>
-
-    <title> LIBRARY ASSISTANT </title>
  
  <!-- meta tags -->
    <meta charset="UTF-8">
@@ -11,11 +9,12 @@
  <!-- include topnav styling and stylesheet -->
   <link rel="stylesheet" href="/FrontEnd/Styles(css_files)/login.css">
    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-   <div class="topnav">
 
-   <div class="logo"><img src="/FrontEnd/Static(images)/frontPage_book.png" class="w3-round w3-image" 
-     alt="book_logo" width="40" height="40"><b><i> LIBRARY ASSISTANT </i></b></div>
-   <div class=menu>
+   <div class="topnav">
+    <div class="logo"><img src="/FrontEnd/Static(images)/Library_Assistant_Logo.png" class="w3-round w3-image" 
+      alt="book_logo" width="270" height="50" ><b><i> </i></b></div>
+  <div class=menu>
+  <nav class="navbar navbar-expand-lg p-0" style="display: block;">
  
   <!-- Other references -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,11 +23,8 @@
 
           <!-- Other menu options from front page -->
          
-          <a href="/FrontEnd/Templates(html_files)/home_page.html">Home</a>
-          <!-- <a href="/FrontEnd/Templates(html_files)/login.html">Login</a> -->
-          <a href="/FrontEnd/Templates(html_files)/signup.html">Sign Up</a>
-          <a href="/FrontEnd/Templates(html_files)/quiz.html">Quiz</a>
-          <a href="/FrontEnd/Templates(html_files)/get_started.html">Get Started</a>
+          <a href="/FrontEnd/Templates(html_files)/home_page.html">Home</a> 
+          <a href="/FrontEnd/Templates(html_files)/about_us.html">About us</a>
           <a href="/FrontEnd/Templates(html_files)/feedback.html">Contact Us</a>
  
    </div>
@@ -40,7 +36,12 @@
 
     <body>
 
-        <div class="title"> <h1> Library </h1></div>
+        <div class="title"> <h1> LOG IN </h1> </div>
+
+        <br>
+        <br>
+        <br> 
+         <img src="/FrontEnd/Static(images)/login_image.png" align="left" alt="welcome_image" height = 75% width=40%> 
     
         <div class="login-div">
         
@@ -60,12 +61,19 @@
                 <input type="password" placeholder="Password" id ="Password"> 
             </div>
             
-    
-            <input class="signin-btn" id="signin-btn" type="submit" name="signin-btn" value="LOGIN"/>
-
-            <div class = "sign-up">
-                <a href="./signup.html">New to Library? Sign Up here</a>
+            <div class = "forgot">
+                <a href="/FrontEnd/Templates(html_files)/forgot_password.html"> Forgot password? </a>
             </div>
+    
+            <br>
+
+            <input class="signin-btn" id="signin-btn" type="submit" name="signin-btn" value="LOGIN"/>
+             
+            <h6> <center> New to Library? </center> </h6>
+            <div class = "sign-up">
+                <a href="/FrontEnd/Templates(html_files)/signup.html"> <b> SIGN UP </b> </a>
+            </div>
+
         </div>
 
                <!-- JavaScript -->
@@ -90,7 +98,7 @@
 
       </script>
 
-       <footer style="background-color: #3d1473">
+       <footer style="background-color: #080e36">
        <p style="color:white"> MCSSN </p>
         <!-- We can add the creator names instead-->
        </footer>

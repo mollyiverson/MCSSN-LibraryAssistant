@@ -22,8 +22,6 @@
   margin-top: 10px;
 }
 
-
-
 /* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ddd;
@@ -77,12 +75,13 @@ ul{
 
 footer{
   width: 100%;
-  bottom: 190px; /* 212 , 190*/
-  position: relative;
+  bottom: 100px; /* 212px , 190px*/ /* 0*/
+  position: relative; 
   left: 0;
   height: 40px; /* 50px */
-  text-align:center;
-}
+ text-align:center; 
+} 
+
 
 /* Change the color of links on hover */
 .topnav a:hover {
@@ -96,9 +95,10 @@ footer{
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1200px; 
   flex-wrap: wrap;
   z-index: 1;
+  height: 600px;  /* Has been added*/
 }
 .container .cord {
   position: relative;
@@ -368,12 +368,14 @@ svg {
 .wave {
   animation: wave 3s linear;
   animation-iteration-count:infinite;
-  fill: #080e36;
+  fill: #101746;
+  /* fill: #080e36; */
 }
 
 .drop {
   /*fill: var(--col-deepblue);*/
-  fill: #102951;
+  fill: #16305a;
+  /* fill: #102951; */
   fill-opacity:100%;
   animation: drop 3.2s linear infinite normal;
   /*stroke: var(--col-deepblue);*/

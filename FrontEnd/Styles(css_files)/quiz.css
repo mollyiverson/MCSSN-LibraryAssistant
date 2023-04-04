@@ -5,7 +5,7 @@
   
   .topnav 
   {
-    background: rgb(101, 44, 108); /* 100% opacity */
+    background: #080e36; 
     overflow: hidden;
     display: flex;
     padding: 20px;
@@ -87,7 +87,7 @@
   
   input[type="submit"]{
     font-size: 20px;
-    background-color: #c369e1;
+    background-color: #c369e1; 
     border-radius: 10px;
     width: 100%;
     padding: 12px 20px;

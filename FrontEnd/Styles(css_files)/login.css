@@ -4,16 +4,15 @@
 }
 
 body {
-    background-color: #3a3a40 ;
+    background-color: #f3e8e8;
 }
 
 .login-div {
-    margin-left: 700px;
-    margin-top: 50px;
-    height: 400px;
-    width: 350px;
-    background-color: #202027;
-    ;
+    margin-left: 1000px; 
+    margin-top: 70px; 
+    height: 450px; 
+    width: 400px; 
+    background-color: #96b9c6; 
     padding: 60px;
 }
 
@@ -80,19 +79,27 @@ input.signin-btn {
     border: none;
     font-size: 18px;
    
-    
     background-color: #1762A7;
     color: #fff;
     margin-bottom: 50px;
-   
 }
 
 .sign-up{
     color: #1762A7;
     font-family: 'Poppins', sans-serif;
-    text-align: right;
+    text-align: center;
     margin-top: 5px;
-    
+    font-size: large;
+    font-weight: 500, bolder;
+}
+
+.forgot{
+  color: #1762A7;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin-top: 5px;
+  font-size: large;
+  font-weight: 500, bolder;
 }
 
 a {
@@ -108,7 +115,7 @@ a {
   
   .topnav 
   {
-    background: rgb(101, 44, 108); /* 100% opacity */
+    background: #080e36;
     overflow: hidden;
     display: flex;
     padding: 20px;
@@ -144,14 +151,14 @@ a {
   }
 
 
-  /* h1 {
-    color:white;
+  h1 {
+    color:black;
     text-align: center;
     padding-top: 10px;
     font-size: 100px;
-    text-shadow: 4px 4px #000000;
+    /* text-shadow: 4px 4px #000000; */
     font-family: Georgia, serif;
-  } */
+  }
   
   
   footer{

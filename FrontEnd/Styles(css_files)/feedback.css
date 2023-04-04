@@ -5,7 +5,7 @@
   
   .topnav 
   {
-    background: rgb(101, 44, 108); /* 100% opacity */
+    background:#080e36; 
     overflow: hidden;
     display: flex;
     padding: 20px;
@@ -22,11 +22,11 @@
     border-radius: 7px;
   }
   
-  .logo{
+  /* .logo{
     color: white;
     padding-right: 20px;
     font-size: 32px;
-  }
+  } */
   
   /* Change the color of links on hover */
   .topnav a:hover {
@@ -71,6 +71,7 @@
   width: 350px;  
   /* Form outline */
     padding: 3em;  
+  
 } 
 
 
@@ -89,7 +90,7 @@ textarea {
   font: 1em sans-serif;
 
   /* Uniform text field size */
-   width: 360px; 
+   width: 370px; 
 }
 
 
@@ -106,5 +107,4 @@ textarea {
   /* Provide space to type some text */
    height: 9em; 
 }
-
-/* Add a color to the active/current link
+/* Add a color to the active/current link*/
