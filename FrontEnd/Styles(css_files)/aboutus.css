@@ -1,6 +1,6 @@
 *{
   margin:0;
-  box-sizing: border-box;
+  
 }
 
 .topnav {
@@ -9,6 +9,7 @@
   display: flex;
   padding: 10px;
   justify-content: space-between;
+  
 }
 
 .topnav a {
@@ -22,11 +23,6 @@
   margin-top: 10px;
 }
 
-/*.logo{
-  color: white;
-  padding-right: 20px;
-  font-size: 32px;
-}*/
 
 /* Change the color of links on hover */
 .topnav a:hover {
@@ -40,34 +36,53 @@
   color: white;
 }
 
-body {
-  background-image: url("/FrontEnd/Static(images)/homePage_background.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
+
 
 h3 {
   color:white;
-  text-align: center;
-  /*padding-top: 10px;
-  font-size: 110px; 
-  text-shadow: 4px 4px #000000;*/
-  text-shadow: 4px 4px #000000;
   position: relative;
   font-size: 200px; 
-  bottom: 350px;
-  right: 5px;
+  top: -00px;
+  text-align: center;
   font-family: Georgia, serif;
 }
 
-p {
-    color:white;
+#desc {
+    color:white;    
+    position: relative;  
+    font-size: 25px; 
+    font-family: 'Work Sans', sans-serif; 
     text-align: center;
-    position: relative;
+}
+
+#search{
+  color:white;    
+  position: relative;  
   font-size: 25px; 
-  bottom: 350px;
-    font-family: Georgia, serif;
+  font-family: 'Work Sans', sans-serif; 
+  text-align: center;
+  top: -570px;
+  right: 485px;
+
+}
+
+#quiz{
+  color:white;    
+  position: relative;  
+  font-size: 25px; 
+  font-family: 'Work Sans', sans-serif; 
+  text-align: center;
+  top: -700px;
+}
+
+#profile{
+  color:white;    
+  position: relative;  
+  font-size: 25px; 
+  font-family: 'Work Sans', sans-serif; 
+  text-align: center;
+  top: -830px;
+  right: -490px;
 }
 
 ul{
@@ -95,7 +110,7 @@ ul{
 
 footer{
   width: 100%;
-  bottom: 190px; /* 212 , 190*/
+  bottom:90px; /* 212 , 190*/
   position: relative;
   left: 0;
   height: 40px; /* 50px */
@@ -110,18 +125,57 @@ footer{
 }
 
 .container {
-  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 1200px;
-  flex-wrap: wrap;
-  z-index: 1;
 }
 .square {
     height: 400px;
-    width: 400px;
-    position: relative;
-    top: 50px;
-    background-color: #102951;
+    width: 700px;
+    background-color: #464646;
 }
+
+/* making circular images for search, quiz, and profile*/
+.image1 {
+  position: relative; 
+  width: 300px; 
+  height: 300px; 
+  overflow: hidden; 
+  border-radius: 50%; 
+}
+
+.image1 img{ 
+  width: 100%; 
+  height: auto; 
+}
+
+.image2 {
+  position: relative; 
+  width: 300px; 
+  height: 300px; 
+  overflow: hidden; 
+  border-radius: 50%; 
+  align-items: center;
+  right: -960px;
+  top: -300px;
+}
+
+.image2 img{ 
+  width: 100%; 
+  height: auto; 
+}
+
+.image3 {
+  position: relative; 
+  width: 300px; 
+  height: 300px; 
+  overflow: hidden; 
+  border-radius: 50%; 
+  margin-left: auto;
+  margin-right: auto;
+  top: -600px;
+}
+
+.image3 img { 
+  width: 100%; 
+  height: auto; 
+}
+
