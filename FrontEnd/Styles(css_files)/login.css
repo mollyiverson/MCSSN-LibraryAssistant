@@ -3,14 +3,18 @@
     font-family: 'Rubik', sans-serif;
 }
 
+
 body {
     background-color: #f3e8e8;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .login-div {
-    margin-left: 1000px; 
-    margin-top: 70px; 
-    height: 450px; 
+    position: relative;
+    right: -740px;
+    top: -450px;
+    height: 530px; 
     width: 400px; 
     background-color: #96b9c6; 
     padding: 60px;
@@ -34,6 +38,8 @@ body {
     font-size:  18px;
     padding: 10px 20px 10px 5px;
     margin-bottom: 10px;
+    position: relative;
+    right: -30px;
     border: none;
     outline: none;
     background: none;
@@ -42,6 +48,7 @@ body {
 .username{
     font-family: 'Poppins', sans-serif;
     display: block;
+    position: relative;
     border-radius: 40px;
     border: 1px solid rgb(255, 255, 255);
     padding: 10px;
@@ -50,6 +57,7 @@ body {
 
 .password{
     font-family: 'Poppins', sans-serif;
+    position: relative;
     display: block;
     border-radius: 40px;
     border: 1px solid rgb(255, 255, 255);
@@ -59,9 +67,11 @@ body {
 
 .form svg {
     height: 25px;
+    position:relative;
+    top: 20px;
+    right: -10px;
     margin-bottom: -10px;
-    margin-left: -5px;
-    margin-right: 5px;
+    margin-left: -10px;
 }
 
 .options {
@@ -78,7 +88,8 @@ input.signin-btn {
     padding: 12px 10px;
     border: none;
     font-size: 18px;
-   
+    position: relative;
+    right:5px;
     background-color: #1762A7;
     color: #fff;
     margin-bottom: 50px;
@@ -86,9 +97,10 @@ input.signin-btn {
 
 .sign-up{
     color: #1762A7;
+    position: relative;
+    top: -25px;
+    right: -100px;
     font-family: 'Poppins', sans-serif;
-    text-align: center;
-    margin-top: 5px;
     font-size: large;
     font-weight: 500, bolder;
 }
@@ -97,7 +109,8 @@ input.signin-btn {
   color: #1762A7;
   font-family: 'Poppins', sans-serif;
   text-align: center;
-  margin-top: 5px;
+  position: relative;
+  top: 5px;
   font-size: large;
   font-weight: 500, bolder;
 }
