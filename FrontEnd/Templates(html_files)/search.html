@@ -25,58 +25,67 @@
 <!-- start of body -->
 
 <body>
+
   <body style="background-color: #4d597e;">
 
-  <div class="topnav">
-    <div class="logo"><img src="/FrontEnd/Static(images)/Library_Assistant_Logo.png" class="w3-round w3-image"
-        alt="book_logo" width="270" height="100"></div>
+    <div class="topnav">
+      <div class="logo"><img src="/FrontEnd/Static(images)/Library_Assistant_Logo.png" class="w3-round w3-image"
+          alt="book_logo" width="270" height="100"></div>
 
-    <div class="search-container">
-      <form class="search-form">
-        <input id="input" type="search" placeholder="Search..." name="search">
-        <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
-      </form>
-    </div>
-
-    <div class=menu>
-      <nav class="navbar navbar-expand-lg p-0" style="display: block;">
-        <a href="/FrontEnd/Templates(html_files)/quiz.html">Quiz</a>
-        <a href="/FrontEnd/Templates(html_files)/home_page.html">Home</a>
-      </nav>
-    </div>
-  </div>
-
-  <!--- under navigation bar -->
-
-  <!-- <div class="vertical-nav">
-      <div class="filters">
-        <form>
-          <p>Search by:</p>
-          <input type="radio" id="all" name="choice" value="all" checked>
-          <label for="all">All</label>
-          <br>
-          <input type="radio" id="author" name="choice" value="author">
-          <label for="author">Author</label>
-          <br>
-          <input type="radio" id="title" name="choice" value="title">
-          <label for="title">Title</label>
-          <br>
-          <input type="radio" id="isbn" name="choice" value="isbn">
-          <label for="isbn">ISBN</label>
-          <br>
+      <div class="search-container">
+        <form class="search-form">
+          <input id="input" type="search" placeholder="Search..." name="search">
+          <button id="search-button" type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
-  </div> -->
-  
-  <div class="book-list" >
-    <div id="list-output" class="">
-      <div class="row">
-        <!-- card  -->
 
+      <div class=menu>
+        <nav class="navbar navbar-expand-lg p-0" style="display: block;">
+          <a href="/FrontEnd/Templates(html_files)/quiz.html">Quiz</a>
+          <a href="/FrontEnd/Templates(html_files)/home_page.html">Home</a>
+        </nav>
+      </div>
+    </div>
+
+    <!--- under navigation bar -->
+
+    <div class="container">
+      <div class="sidebar">
+
+        <br>
+        <div class="sidebar-container" id="default-container"><input type="radio" id="default" value="default"
+            name="searchMethod" /><label for="default">All</label></div>
+        <br>
+        <br>
+        <div class="sidebar-container" id="title-container"><input type="radio" id="title" value="title"
+            name="searchMethod" /> <label for="title">Title</label></div>
+        <br>
+        <br>
+        <div class="sidebar-container" id="author-container"><input type="radio" id="author" value="author"
+            name="searchMethod" /> <label for="author">Author(s)</label></div>
+        <br>
+        <br>
+        <div class="sidebar-container" id="isbn-container"><input type="radio" id="isbn" value="isbn"
+            name="searchMethod" /> <label for="isbn">ISBN</label></div>
+        <br>
+        <br>
+        <div class="sidebar-container" id="subject-container"><input type="radio" id="subject" value="subject"
+            name="searchMethod" /> <label for="subject">Subject</label></div>
       </div>
 
+
+      <div class="book-list">
+        <div id="list-output" class="">
+          <div class="row">
+            <!-- card  -->
+    
+          </div>
+    
+        </div>
+
+
+      </div>
     </div>
-  </div>  
   </body>
   <!-- end of body -->
 
@@ -85,5 +94,5 @@
       <h4> MCSSN </h4> <!-- last at the bottom-->
     </div>
   </footer>
-  
-  </html>
+
+</html>
