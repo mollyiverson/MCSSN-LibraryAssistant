@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function formatOutput(bookImg, title, author, bookID, bookLink, bookIsbn) {
-    var viewUrl = 'book.html?isbn=' + bookID; //constructing link for bookviewer
+    var viewUrl = 'book.html?id=' + bookID; //constructing link for bookviewer
     var htmlCard = `<div class="col-lg-6">
           <div class="card" style="">
             <div class="row no-gutters">
@@ -166,11 +166,6 @@ document.addEventListener('DOMContentLoaded', function () {
         </div>`
     return htmlCard;
   }
-
-  function displayError() {
-    alert("Search term can not be empty!");
-  }
-
 
   // SIDE BAR LOGIC
 

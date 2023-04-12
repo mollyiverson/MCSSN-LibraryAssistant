@@ -90,10 +90,11 @@ body {
     border-bottom: 1px solid white;
 }
 
-.sidebar div {
-    padding: 15px;
-    font-size: 24px;
-    display: block;
+.sidebar h2 
+{
+    color: #f1f1f1;
+    text-align: center;
+    font: normal 400 35px/1 'Josefin Sans', sans-serif;
 }
 
 /* Add responsiveness - will automatically display the navbar vertically instead 
@@ -112,16 +113,17 @@ body {
 .sidebar-container {
     background-color: #199a84;
     border-radius: 50px;
-    /* padding: 20px; */
+    padding: 10px;
     width: 70%;
     margin-left: 15%;
 }
 
 .sidebar-container label {
     display: block;
-    padding: 15px;
+    padding: 10px;
     font-size: 24px;
     color: #080e36;
+    text-align: center;
 }
 
 
@@ -138,24 +140,23 @@ body {
     margin-left: 330px;
     width: 75%;
     height: 100%;
-    visibility:hidden;
+    visibility: hidden;
 }
 
-.book-list h5{
-    font : normal 400 20px/1 'Josefin Sans', sans-serif;
+.book-list h5 {
+    font: normal 400 20px/1 'Josefin Sans', sans-serif;
     font-weight: bold;
 }
 
 
-.book-list a{
+.book-list a {
     background-color: #080e36;
-    width:100%;
+    width: 100%;
     padding: 15px;
-    font : normal 400 20px/1 'Josefin Sans', sans-serif;    
+    font: normal 400 20px/1 'Josefin Sans', sans-serif;
 }
 
-.book-list .card
-{
+.book-list .card {
     background-color: #d2d0d0;
 }
 
@@ -166,7 +167,7 @@ body {
 
 footer {
     width: 100%;
-    position: fixed;
+    position: absolute;
     bottom: 0px;
     left: 0;
     height: 20px;
