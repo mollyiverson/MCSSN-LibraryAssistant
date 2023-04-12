@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var outputList = document.getElementById("list-output");
   var placeHldr = "/FrontEnd/Static(images)/image-not-found-icon.png";
 
+
   document.querySelector('.search-form').addEventListener('submit', search);
 
   function search(e) {
@@ -72,83 +73,51 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function displayResults(response) {
-    for (var i = 0; i < response.items.length; i += 2) {
-      // book 1
+function displayResults(response) {
+  for (var i = 0; i < response.items.length; i += 2) {
+    // create a new row for each pair of cards
+    var row = document.createElement("div");
+    row.classList.add("row");
 
-      item = response.items[i];
-      title1 = item.volumeInfo.title;
-      author1 = item.volumeInfo.authors;
+    // card 1
+    var item = response.items[i];
+    var title1 = item.volumeInfo.title;
+    var author1 = item.volumeInfo.authors || "";
+    var publisher1 = item.volumeInfo.publisher || "";
+    var bookLink1 = item.volumeInfo.previewLink || "";
+    var bookID = item.id;
+    var bookIsbn = item.volumeInfo.industryIdentifiers && item.volumeInfo.industryIdentifiers.length >= 2 ? item.volumeInfo.industryIdentifiers[0].identifier : "ISBN not available";
+    var bookImg1 = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail ? item.volumeInfo.imageLinks.thumbnail : placeHldr || "image not available";
+    var card1 = formatOutput(bookImg1, title1, author1, bookID, bookLink1, bookIsbn);
+    var col1 = document.createElement("div");
+    col1.classList.add("col-lg-6");
+    col1.appendChild(card1);
+    row.appendChild(col1);
 
-      // if no author
-      if (author1 == undefined) {
-        author1 = "";
-      }
-      publisher1 = item.volumeInfo.publisher;
-      bookLink1 = item.volumeInfo.previewLink;
-      bookID = item.id;
-
-      // if no isbn
-      if (item.volumeInfo.industryIdentifiers && item.volumeInfo.industryIdentifiers.length >= 2) {
-        bookIsbn = item.volumeInfo.industryIdentifiers[0].identifier; // isbn 13 not 10
-      } else {
-        bookIsbn = "ISBN not available";
-      }
-
-      // if no image
-      if (item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail) {
-        bookImg1 = item.volumeInfo.imageLinks.thumbnail;
-      } else if (placeHldr) {
-        bookImg1 = placeHldr;
-      } else {
-        bookImg1 = "image not available";
-      }
-
-      if (i + 1 < response.items.length) {
-        // book 2
-        item2 = response.items[i + 1];
-        title2 = item2.volumeInfo.title;
-        author2 = item2.volumeInfo.authors;
-        if (author2 == undefined) {
-          author2 = "";
-        }
-        publisher2 = item2.volumeInfo.publisher;
-        bookLink2 = item2.volumeInfo.previewLink;
-        bookID2 = item2.id;
-
-        // if no isbn
-        if (item2.volumeInfo.industryIdentifiers && item2.volumeInfo.industryIdentifiers.length >= 2) {
-          bookIsbn2 = item2.volumeInfo.industryIdentifiers[0].identifier;
-        } else {
-          bookIsbn2 = "ISBN not available";
-        }
-
-        // if no image
-        if (item2.volumeInfo.imageLinks && item2.volumeInfo.imageLinks.thumbnail) {
-          bookImg2 = item2.volumeInfo.imageLinks.thumbnail;
-
-        } else if (placeHldr) {
-          bookImg2 = placeHldr;
-        } else {
-          bookImg2 = "image not available";
-        }
-
-        outputList.innerHTML += '<div class="row mt-4">' +
-          formatOutput(bookImg1, title1, author1, bookID, bookLink1, bookIsbn) +
-          formatOutput(bookImg2, title2, author2, bookID2, bookLink2, bookIsbn2) +
-          '</div>';
-
-      } else {
-        outputList.innerHTML += '<div class="row mt-4">' +
-          formatOutput(bookImg1, title1, author1, bookID, bookLink1, bookIsbn) +
-          '</div>';
-      }
+    if (i + 1 < response.items.length) {
+      // card 2
+      var item2 = response.items[i + 1];
+      var title2 = item2.volumeInfo.title;
+      var author2 = item2.volumeInfo.authors || "";
+      var publisher2 = item2.volumeInfo.publisher || "";
+      var bookLink2 = item2.volumeInfo.previewLink || "";
+      var bookID2 = item2.id;
+      var bookIsbn2 = item2.volumeInfo.industryIdentifiers && item2.volumeInfo.industryIdentifiers.length >= 2 ? item2.volumeInfo.industryIdentifiers[0].identifier : "ISBN not available";
+      var bookImg2 = item2.volumeInfo.imageLinks && item2.volumeInfo.imageLinks.thumbnail ? item2.volumeInfo.imageLinks.thumbnail : placeHldr || "image not available";
+      var card2 = formatOutput(bookImg2, title2, author2, bookID2, bookLink2, bookIsbn2);
+      var col2 = document.createElement("div");
+      col2.classList.add("col-lg-6");
+      col2.appendChild(card2);
+      row.appendChild(col2);
     }
+
+    outputList.appendChild(row);
   }
+}
 
   function formatOutput(bookImg, title, author, bookID, bookLink, bookIsbn) {
     var viewUrl = 'book.html?id=' + bookID; //constructing link for bookviewer
-    var htmlCard = `<div class="col-lg-6">
+    var htmlCard = `<div class="col-lg-11">
           <div class="card" style="">
             <div class="row no-gutters">
               <div class="col-md-6">
@@ -158,14 +127,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="card-body">
                   <h5 class="card-title">${title}</h5>
                   <p class="card-text">${author}</p>
-                  <a target="_blank" href="${viewUrl}" class="btn btn-secondary">Read Book</a>
+                  <button id="readButton" class="btn btn-secondary">Read Book</button>
                 </div>
               </div>
             </div>
           </div>
-        </div>`
-    return htmlCard;
+        </div>`;
+
+    var wrapper = document.createElement('div');
+    wrapper.innerHTML = htmlCard;
+    var button = wrapper.querySelector("#readButton");
+    button.addEventListener('click', function () {
+      localStorage["bookID"] = bookID;
+      window.location.href = "book.html";
+    });
+
+    return wrapper.firstChild;
   }
+
+
 
   // SIDE BAR LOGIC
 

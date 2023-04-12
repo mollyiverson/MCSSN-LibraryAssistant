@@ -158,7 +158,9 @@ body {
 
 .book-list .card {
     background-color: #d2d0d0;
+    margin-bottom: 10%;
 }
+
 
 html,
 body {
@@ -167,7 +169,7 @@ body {
 
 footer {
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0px;
     left: 0;
     height: 20px;

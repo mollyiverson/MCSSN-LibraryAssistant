@@ -43,3 +43,25 @@ body {
     color: white;
 }
 
+
+html,
+body {
+    height: 100%;
+}
+
+footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    height: 20px;
+    text-align: center;
+}
+
+footer div {
+    background-color: #080e36;
+    margin: -20px 0px 0px 0px;
+    padding: 0px;
+    color: #fff;
+    text-align: center;
+}
