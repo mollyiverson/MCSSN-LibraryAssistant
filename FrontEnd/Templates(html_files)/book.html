@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+
 </head>
 
 <!-- start of body -->
@@ -42,13 +43,26 @@
         </div>
 
         <!--- under navigation bar -->
-
-        <table>
-            <tr>
-                <td id="here">test</td>
-            </tr>
-        </table>
-
+        <div class="container" id="book-output">
+            <div class="row">
+              <div class="col-md-4">
+                <img id="bookcover" src="" alt="book cover">
+              </div>
+              <div class="col-md-7">
+                <div id="title"></div>
+                <div id="author"></div>
+                <div id="publisher"></div>
+                <div id="description"></div>
+              </div>
+              <div class="col-md-1">
+                <button id="wishlistButton" class="btn btn-secondary">Add to WishList</button>
+                <br>
+                <br>
+                <button id="checkoutButton" class="btn btn-secondary">Check out</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
     </body>

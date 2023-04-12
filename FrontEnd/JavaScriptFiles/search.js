@@ -37,18 +37,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   function useAPI(curr, searchData) {
-    var url; //= `https://www.googleapis.com/books/v1/volumes?q="${searchData}"&maxResults=10&startIndex=` + (curr - 1) * 10
     var selectedMethod = document.querySelector('input[name="searchMethod"]:checked').value;
     if (selectedMethod == "isbn") {
-      url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${searchData}&maxResults=10&startIndex=` + (curr - 1) * 10;
+      url = bookUrl + `isbn:${searchData}&maxResults=10&startIndex=` + (curr - 1) * 10;
     } else if (selectedMethod == "title") {
-      url = `https://www.googleapis.com/books/v1/volumes?q=intitle:"${searchData}"&maxResults=10&startIndex=` + (curr - 1) * 10;
+      url = bookUrl + `intitle:"${searchData}"&maxResults=10&startIndex=` + (curr - 1) * 10;
 
     } else if (selectedMethod == "author") {
-      url = `https://www.googleapis.com/books/v1/volumes?q=inauthor:"${searchData}"&maxResults=10&startIndex=` + (curr - 1) * 10;
+      url = bookUrl + `inauthor:"${searchData}"&maxResults=10&startIndex=` + (curr - 1) * 10;
 
     } else if (selectedMethod == "subject") {
-      url = `https://www.googleapis.com/books/v1/volumes?q=subject:"${searchData}"&maxResults=10&startIndex=` + (curr - 1) * 10;
+      url = bookUrl + `subject:"${searchData}"&maxResults=10&startIndex=` + (curr - 1) * 10;
     } else {
       // default
       url = bookUrl + searchData;
@@ -68,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       },
       error: function () {
-        alert("Error - try again!");
+        alert("Error - could not find book");
       }
     });
   }
@@ -83,12 +82,9 @@ function displayResults(response) {
     var item = response.items[i];
     var title1 = item.volumeInfo.title;
     var author1 = item.volumeInfo.authors || "";
-    var publisher1 = item.volumeInfo.publisher || "";
-    var bookLink1 = item.volumeInfo.previewLink || "";
     var bookID = item.id;
-    var bookIsbn = item.volumeInfo.industryIdentifiers && item.volumeInfo.industryIdentifiers.length >= 2 ? item.volumeInfo.industryIdentifiers[0].identifier : "ISBN not available";
     var bookImg1 = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.thumbnail ? item.volumeInfo.imageLinks.thumbnail : placeHldr || "image not available";
-    var card1 = formatOutput(bookImg1, title1, author1, bookID, bookLink1, bookIsbn);
+    var card1 = formatOutput(bookImg1, title1, author1, bookID);
     var col1 = document.createElement("div");
     col1.classList.add("col-lg-6");
     col1.appendChild(card1);
@@ -99,12 +95,9 @@ function displayResults(response) {
       var item2 = response.items[i + 1];
       var title2 = item2.volumeInfo.title;
       var author2 = item2.volumeInfo.authors || "";
-      var publisher2 = item2.volumeInfo.publisher || "";
-      var bookLink2 = item2.volumeInfo.previewLink || "";
       var bookID2 = item2.id;
-      var bookIsbn2 = item2.volumeInfo.industryIdentifiers && item2.volumeInfo.industryIdentifiers.length >= 2 ? item2.volumeInfo.industryIdentifiers[0].identifier : "ISBN not available";
       var bookImg2 = item2.volumeInfo.imageLinks && item2.volumeInfo.imageLinks.thumbnail ? item2.volumeInfo.imageLinks.thumbnail : placeHldr || "image not available";
-      var card2 = formatOutput(bookImg2, title2, author2, bookID2, bookLink2, bookIsbn2);
+      var card2 = formatOutput(bookImg2, title2, author2, bookID2);
       var col2 = document.createElement("div");
       col2.classList.add("col-lg-6");
       col2.appendChild(card2);
@@ -115,13 +108,12 @@ function displayResults(response) {
   }
 }
 
-  function formatOutput(bookImg, title, author, bookID, bookLink, bookIsbn) {
-    var viewUrl = 'book.html?id=' + bookID; //constructing link for bookviewer
+  function formatOutput(bookImg, title, author, bookID) {
     var htmlCard = `<div class="col-lg-11">
           <div class="card" style="">
             <div class="row no-gutters">
               <div class="col-md-6">
-                <img src="${bookImg}" class="card-img" alt="...">
+                <img src="${bookImg}" class="card-img" alt="book cover" height="300">
               </div>
               <div class="col-md-5">
                 <div class="card-body">
@@ -138,9 +130,10 @@ function displayResults(response) {
     wrapper.innerHTML = htmlCard;
     var button = wrapper.querySelector("#readButton");
     button.addEventListener('click', function () {
-      localStorage["bookID"] = bookID;
+      localStorage.setItem("bookID", bookID);
       window.location.href = "book.html";
     });
+
 
     return wrapper.firstChild;
   }
