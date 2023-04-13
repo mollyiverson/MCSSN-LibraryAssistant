@@ -8,6 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- include topnav styling  and stylesheet-->
+  
+
+
   <link rel="stylesheet" href="/FrontEnd/Styles(css_files)/signup.css">  <!-- change it later-->
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -37,9 +40,10 @@
   <br>
   <br>
   <br> 
+  <!--
 <div class="singupimg">
   <img src="/FrontEnd/Static(images)/signup_image.png" allign="left" alt="welcome_image2" width=40%> 
-</div>
+</div>-->
   <div class="signup-div">
   
   <div class="form">
@@ -71,11 +75,11 @@
           <input type="admin" placeholder="admin" id ="admin"> 
      </div> -->
        
-      <br>
 
-      <input class="signfirst-btn" id="signfirst-btn" type="submit" name="signfirst-btn" value="SIGN UP"/>
-
-      
+      <button input class="signfirst-btn" type="button" id="signfirst-btn">Log In</button>
+      <!--<input class="signfirst-btn" id="signfirst-btn" type="submit" name="signfirst-btn" value="SIGN UP"/>-->
+      <!--<button id="signfirst-btn">Click Me</button>-->
+      <!---take users to login page-->
       <div class = "sign-first">  
           <a href="/FrontEnd/Templates(html_files)/login.html"> LOGIN HERE </a>
       </div>
@@ -84,32 +88,15 @@
 
    <!-- JavaScript -->
 
-   <script>
-       
-    document.getElementById('signfirst-btn').onclick = function() 
-    {
-        var email = document.getElementById('Username').value;
-        var password = document.getElementById('Password').value;
-
-        if (email == "Admin" && password == "User")
-        {
-            window.location.replace("main.html");
-        }
-        else
-        {
-            alert("Invalid Value");
-        }
-       
-    };
-
-  </script>
-  
+  <!--
     <footer style="background-color: #080e36">
     <p style="color:white"> MCSSN </p>
-     <!-- We can add the creator names instead-->
-    </footer>
+     <- We can add the creator names instead
+    </footer>-->
 
 
+
+    <script src="/FrontEnd/JavaScriptFiles/signup.js"></script>
 </body>
 <!-- end of body -->
 
