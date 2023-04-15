@@ -131,4 +131,10 @@
     text-align: center;
     line-height: 16px;
   }
-  
+
+  .image-right {
+    float: right;
+    height: 25%;
+    width: 25%;
+  }
+       

@@ -1,3 +1,95 @@
+    
+// var audio = new Audio('/FrontEnd/Static(images)/catch-it-117676.mp3');
+// audio.play();
+
+var audio = document.getElementById("myAudio");
+var playButton = document.getElementById("playButton");
+var pauseButton = document.getElementById("pauseButton");
+
+  playButton.addEventListener("click", function() {
+    audio.play();
+    playButton.style.display = "none";
+    pauseButton.style.display = "block";
+  });
+
+  pauseButton.addEventListener("click", function() {
+    audio.pause();
+    pauseButton.style.display = "none";
+    playButton.style.display = "block";
+  });
+
+        /* End of sound logic */
+
+print(searchBooks("9780310709626"))
+
+function getBooks(id) {
+      href = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
+      resp = href(api + id);
+      data = json.load(resp);
+      print(data["items"]);
+
+      displayBook(data);
+}
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+  window.onload = function () {
+      search();
+
+  }
+
+  var bookUrl = "https://www.googleapis.com/books/v1/volumes/";
+  var bookDisplay = document.getElementById("book-output");
+  var placeHldr = "/FrontEnd/Static(images)/image-not-found-icon.png";
+
+
+  function search() {
+      //bookDisplay.innerHTML = "";
+      var searchData = localStorage.getItem("bookID");
+      //document.getElementById('here').innerHTML = searchData;
+      useAPI(searchData);
+  }
+
+
+  function useAPI(searchData) {
+      url = bookUrl + searchData;
+      $.ajax({
+          url: url,
+          dataType: "json",
+          beforeSend: function () {
+          },
+          success: function (response) {
+              displayResults(response);
+          },
+          error: function () {
+              alert("Error - try again!");
+          }
+      });
+  }
+
+  function displayResults(response) {
+
+    if (!response || response.length === 0) {
+        bookDisplay.innerHTML += "<h1>No results found</h1>";
+        return;
+    }
+  }
+
+   // Example usage:
+  search("The Hitchhiker's Guide to the Galaxy", (error, books) => {
+  if (error) {
+    console.error(error);
+  } else {
+    const book = books[0];
+    displayBook(book);
+  }
+  });
+
+});
+
+
+
 function countChecksByType(type){
 
     var checkMarksOfType = document.getElementsByName(type);
@@ -41,12 +133,33 @@ function countChecksByType(type){
       alert("Reccomended reading: Disgust, revulsion, aversion books");
       alert("Reccomended reading: Sadness, disappointment, grief books");
       alert("Reccomended reading: Guilt, regret, shame books");
-    }
+     }
 
-      if( a >= 1 ) {
+     //write this above first
+     let book1 = document.createElement('book1');
+     book1.target = '_blank';
+     book1.href = 'https://www.google.com';
+
+      if( a >= 1 )
+       {
         alert("Reccomended reading: Happiness, joy, excitement books");
         //location.assign("dep.html");
-      }
+
+        // alert("Reccomended reading: Happiness, joy, excitement books");
+        // location.assign("http://127.0.0.1:5500/FrontEnd/Templates(html_files)/book.html");
+        // alert("http://127.0.0.1:5500/FrontEnd/Templates(html_files)/book.html");
+
+        if (window.confirm('Click "ok" to confirm. Click Cancel to stay here')) 
+          {
+             window.location.href="http://127.0.0.1:5500/FrontEnd/Templates(html_files)/book.html";
+             //windown.open('http://127.0.0.1:5500/FrontEnd/Templates(html_files)/book.html', '_blank');
+            //  book1.click();
+          };
+
+       }
+
+
+      
 
       if( b >= 1 ) {
         alert("Reccomended reading: Contentment, satisfaction, relaxation books");
@@ -81,130 +194,3 @@ function countChecksByType(type){
       }
 
   }
-
-
-  // function reccomend()
-  // {
-  
-  //   var a = countChecksByType("good");  // 2
-  //   var b = countChecksByType("ok"); // 2
-  //   var c = countChecksByType("bad");  // 3
-  //   var d = countChecksByType("worse");  // 2
-
-  //    // creation of my own 
-  //         // a only
-  //     if( a > b && a > c && a > d ) {//fail dep
-  //       alert("Reccomended reading: Depression");
-  //       //location.assign("dep.html");
-  //     }
-  //          // b only
-  //     else if(b > a && b > c && b > d){//fail dep
-  //       alert("Reccomended reading: Depression");
-  //       //location.assign("dep.html");
-  //     }
-
-  //         // c only
-  //     else if(c > a && c > b && c > d){//fail dep
-  //       alert("Reccomended reading: Depression");
-  //       //location.assign("dep.html");
-  //     }
-
-  //        // d only
-  //     else if(d > a && d > b && d > c){//fail dep
-  //       alert("Reccomended reading: Depression");
-  //       //location.assign("dep.html");
-  //     }
-  // }   
-    // // a alone
-    // if(a >= 1 && b < 1 && c < 1 && d < 1){//fail alc
-    //   alert("Reccomended reading: happy books");
-    //   //location.assign("alc.html");       TODO we gotta make these result pages
-    // }
-
-    //      // creation of my own // a only
-    // else if(a > b && a > b && a > c  && a > d ){//fail dep
-    //     alert("Reccomended reading: Depression");
-    //     //location.assign("dep.html");
-    //   }
-   
-    // // b alone
-    // else if(a < 1 && b >= 1 && c < 1 && d < 1){//fail dep
-    //   alert("Reccomended reading: Depression");
-    //   //location.assign("dep.html");
-    // }
-    // else if(alc < 2 && dep < 2 && stu < 3){//fail stu
-    //   alert("Reccomended reading: Study");
-    //   //location.assign("stu.html");
-    // }
-    // else if(alc >= 2 && dep >= 2 && stu >= 3){//fail alc and dep
-    //   alert("Reccomended readings: Alcohol and Depression");
-    //   //location.assign("alcdep.html");
-    // }
-    // else if(alc >= 2 && dep < 2 && stu < 3){//fail alc and stu
-    //   alert("Reccomended readings: Alcohol and Study");
-    //   //location.assign("alcstu.html");
-  
-    // }
-    // else if(alc < 2 && dep >= 2 && stu < 3){//fail dep and stu
-    //   alert("Reccomended readings: Depression and Study");
-    //   //location.assign("depstu.html");
-  
-    // }
-    // else if (alc >= 2 && dep >= 2 && stu < 3){//fail all three :()
-    //   alert("Reccomended readings: Alcohol, Depression, and Study");
-    //   //location.assign("alcdepstu.html");
-  
-    // }
-    // else{//succeed all 3
-    //   alert("No reccomended readings!");
-    //   //location.assign("none.html");
-  
-    // }
-   //}
-
-//   function reccomend()
-//   {
-  
-//     var alc = countChecksByType("alcohol");  //if >= 2, bad sign.
-//     var dep = countChecksByType("depression"); //if >=2 bad sign
-//     var stu = countChecksByType("study");  //if >= 3, good sign
-//     var stu = countChecksByType("study");  //if >= 3, good sign
-  
-//     if(alc >= 2 && dep < 2 && stu >= 3){//fail alc
-//       alert("Reccomended reading: Alcohol");
-//       //location.assign("alc.html");       TODO we gotta make these result pages
-//     }
-//     else if(alc < 2 && dep >= 2 && stu >= 3){//fail dep
-//       alert("Reccomended reading: Depression");
-//       //location.assign("dep.html");
-//     }
-//     else if(alc < 2 && dep < 2 && stu < 3){//fail stu
-//       alert("Reccomended reading: Study");
-//       //location.assign("stu.html");
-//     }
-//     else if(alc >= 2 && dep >= 2 && stu >= 3){//fail alc and dep
-//       alert("Reccomended readings: Alcohol and Depression");
-//       //location.assign("alcdep.html");
-//     }
-//     else if(alc >= 2 && dep < 2 && stu < 3){//fail alc and stu
-//       alert("Reccomended readings: Alcohol and Study");
-//       //location.assign("alcstu.html");
-  
-//     }
-//     else if(alc < 2 && dep >= 2 && stu < 3){//fail dep and stu
-//       alert("Reccomended readings: Depression and Study");
-//       //location.assign("depstu.html");
-  
-//     }
-//     else if (alc >= 2 && dep >= 2 && stu < 3){//fail all three :()
-//       alert("Reccomended readings: Alcohol, Depression, and Study");
-//       //location.assign("alcdepstu.html");
-  
-//     }
-//     else{//succeed all 3
-//       alert("No reccomended readings!");
-//       //location.assign("none.html");
-  
-//     }
-//   }
-
