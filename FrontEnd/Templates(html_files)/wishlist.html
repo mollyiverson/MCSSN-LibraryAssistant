@@ -1,0 +1,114 @@
+<!--Javascript code for database is in the middle of the code-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Include Javascript and stylesheet files-->
+  <!-- <script src="/FrontEnd/JavaScriptFiles/home_page.js"></script> -->
+
+
+<!-- include stylesheet -->
+  <link rel="stylesheet" href="/FrontEnd/Styles(css_files)/aboutus.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+  <div class="topnav">
+
+  <div class="logo"><img src="/FrontEnd/Static(images)/Library_Assistant_Logo.png" class="w3-round w3-image" 
+    alt="book_logo" width="270" height="50" ><b><i> </i></b></div>
+  <div class=menu>
+  <nav class="navbar navbar-expand-lg p-0" style="display: block;">
+
+   
+             <!-- Other html files options on the home page--> 
+
+  <a href="/FrontEnd/Templates(html_files)/home_page.html">Home</a> 
+  <a href="/FrontEnd/Templates(html_files)/about_us.html">About us</a>
+  <a href="/FrontEnd/Templates(html_files)/feedback.html">Contact Us</a>
+  
+
+  </nav>
+  </div>
+  </div>
+
+
+             <!-- start of body -->
+            
+
+  
+                <!-- The 2 big boxes options on the home page-->
+
+    
+  <!-- <div class="square"></div> -->
+
+  <!--*****************************************************************************************8-->
+<!--Javascript code to access database information-->
+    <script>
+      function sendData() {
+          var xhr = new XMLHttpRequest();
+          //Runs the script:
+          xhr.open("POST", "http://localhost:3000/runScript", true);
+          xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          xhr.onreadystatechange = function () {
+              if (xhr.readyState === XMLHttpRequest.DONE) {
+                  if (xhr.status === 200) {
+                    //Response from the function:
+                      var response = xhr.response;
+                      //Parses the response as it is originally a string but needs to become the returned list from the database:
+                      var response = JSON.parse(response)
+                      //Displays in a table:
+                          var table = '<table><tr><th>ISBN</th><th>ID</th></tr>';
+                          for (var i = 0; i < response.length; i++) {
+                              //logs the row as a test:
+                              console.log(response[i]);
+                              //Displays isbn and id:
+                              table += '<tr><td>' + response[i].isbn + '</td><td>' + response[i].id + '</td></tr>';
+                          }
+                          table += '</table>';
+                          document.getElementById("result").innerHTML = table;
+                      
+                  } else {
+                      console.error('Failed to make POST request:', xhr.status);
+                  }
+              }
+          };
+          xhr.send(/* payload */);
+      }
+  </script>
+</head>
+<body>
+    <h3 style ="font-size:100 px" id="mText"></h3>
+    <h3 style ="font-size:100 px" id="myText"></h3>
+<h3 style="font-size: 80px;">Wishlist</h3>
+    <div class="image1">
+      <img src="/FrontEnd/Static(images)/temp image.jpg" alt="searchimage">
+    </div> 
+    <div class="image2">
+      <img src="/FrontEnd/Static(images)/temp image.jpg" alt="quizimage">
+    </div> 
+    <div class="image3">
+      <img src="/FrontEnd/Static(images)/temp image.jpg" alt="profileimage">
+    </div> 
+    <p id="search">Search <br>Looks for books in <br>a variety filters</p>
+    <p id="quiz">Quiz<br>Find a book based <br>on your mood</p>
+    <p id="profile">Profile<br>View checked out <br>books and make a<br>wishlist</p>
+
+    <!--***************************************************************************************-->
+    <!--CODE FOR DISPLAYING THE JAVASCRIPT DATABASE!!!!!!!!!!!!!-->
+    <body onload="sendData()">
+      <h1>HTML POST Request Example</h1>
+      <!--Displays the variable result from the javascript-->
+      <div id="result"></div>
+  </body>
+</body>
+<!-- end of body -->
+
+</html>
