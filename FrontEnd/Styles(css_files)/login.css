@@ -2,7 +2,9 @@
     font-family: 'Poppins', sans-serif;
     font-family: 'Rubik', sans-serif;
 }
-
+html, body {
+  height: 100%
+} 
 
 body {
     background-color: #f3e8e8;
@@ -11,9 +13,10 @@ body {
 }
 
 .login-div {
+    border-radius: 20px;
     position: relative;
-    right: -740px;
-    top: -450px;
+    right: -60%;
+    top: -70%;
     height: 530px; 
     width: 400px; 
     background-color: #96b9c6; 

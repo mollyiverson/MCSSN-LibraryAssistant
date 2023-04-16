@@ -12,10 +12,11 @@ body {
 }
 
 .signup-div {
+  border-radius: 20px;
   position: relative;
   right: -60%;
-  top: -5%;
-  height: 90%; 
+  top: -80%;
+  height: 570px; 
   width: 400px; 
   background-color: #96b9c6; 
   padding: 60px;
@@ -87,11 +88,7 @@ body {
   margin-bottom: -10px;
   margin-left: -10px;
 }
-.signupim
-{
-  position: relative;
 
-}
 .options {
     
     display: flex;
@@ -103,8 +100,9 @@ body {
 
 .signfirst-btn {
     width: 100%;
-    padding: 12px 10px;
+    padding: 18px 10px;
     border: none;
+    border-radius: 10px;
     font-size: 18px;
     position: relative;
     margin-bottom: 5%;
@@ -118,7 +116,6 @@ body {
     color: #1762A7;
     font-family: 'Poppins', sans-serif;
     text-align: center;
-  
     font-size: large;
     font-weight: 500, bolder;
 
