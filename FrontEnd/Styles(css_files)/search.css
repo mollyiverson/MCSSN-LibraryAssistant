@@ -10,6 +10,29 @@ body {
     background-size: cover;
 }
 
+/* At the top so it gets hidden first after each search */
+.pagination-wrapper
+{
+    visibility: hidden;
+    text-align: center;
+}
+
+.pagination-wrapper .fa {
+    font-size: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+
+/* Makes the middle circle smaller and higher */
+.pagination-wrapper .fa-circle {
+    font-size: 25px;
+    vertical-align: 0.1em;
+}
+
+.pagination-wrapper i:hover {
+    color: white;
+}
+
 
 .topnav {
     background-color: #080e36;
@@ -161,25 +184,7 @@ body {
     margin-bottom: 10%;
 }
 
-
 html,
 body {
     height: 100%;
-}
-
-footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0px;
-    left: 0;
-    height: 20px;
-    text-align: center;
-}
-
-footer div {
-    background-color: #080e36;
-    margin: -20px 0px 0px 0px;
-    padding: 0px;
-    color: #fff;
-    text-align: center;
 }
