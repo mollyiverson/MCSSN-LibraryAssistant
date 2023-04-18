@@ -9,7 +9,6 @@
   display: flex;
   padding: 10px;
   justify-content: space-between;
-  
 }
 
 .topnav a {
@@ -23,11 +22,11 @@
   margin-top: 10px;
 }
 
-
 /* Change the color of links on hover */
 .topnav a:hover {
   background-color: #ddd;
   color: black;
+  margin-top: 10px;
 }
 
 /* Add a color to the active/current link */
@@ -36,6 +35,9 @@
   color: white;
 }
 
+.topnav a {
+  margin-right: 20px;
+}
 
 
 h3 {
