@@ -115,6 +115,8 @@ app.post('/wishlistBook', (req, res) => {
     client.query(generalQuery);
 });
 
+
+//https://stackoverflow.com/questions/54473981/how-to-combine-app-post-and-app-get-to-one-in-node-js
 app.post('/loginUser', (req, res) => {
     console.log(req.body);
     const { username, password } = req.body;
