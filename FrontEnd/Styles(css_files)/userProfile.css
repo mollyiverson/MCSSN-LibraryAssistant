@@ -6,7 +6,6 @@
 .body-text {
   margin-left: 150px; 
   font-size: 18px;
-  background-color: rgb(69, 83, 94);
   height: 100%;
 }
 
@@ -19,12 +18,49 @@
   }
 }
 
-.topnav a{
+.topnav {
+  background-color: #080e36;
+  overflow: hidden;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  margin-top: 10px;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #4D4D4D;
+  color: white;
+}
+
+.topnav a {
   margin-right: 20px;
 }
 
-.topnav i{
+.topnav i {
   margin-top: 10px;
+}
+
+.topnav h1
+{
+   color: rgb(241, 233, 138);
 }
 
 .sidebar {
@@ -56,14 +92,15 @@
   color: #f1f1f1;
 }
 
+#profile-container
+{
+    background-color: rgb(137, 121, 218);
+}
+
+
 /* Moves the icons a bit to the left of the text */
 a i.fa {
   margin-right: 15px;
-}
-
-.topnav h1
-{
-   color: rgb(241, 233, 138);
 }
 
 .body-text h1{

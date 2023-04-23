@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.onload = function () {
         search();
-
     }
 
     var bookUrl = "https://www.googleapis.com/books/v1/volumes/";

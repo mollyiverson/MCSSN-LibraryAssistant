@@ -2,22 +2,25 @@
 <html>
 
 <head>
-
     <!-- meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Checked Out Books</title>
+    <!-- Title of Website -->
+    <title> LIBRARY ASSISTANT </title>
 
-    <!-- Include Javascript files-->
     <script src="/FrontEnd/JavaScriptFiles/checkedout.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- include stylesheet files-->
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- include stylesheet -->
     <link rel="stylesheet" href="/FrontEnd/Styles(css_files)/checkedout.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-
-    <!-- Load an icon library -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Bar -->
@@ -39,41 +42,63 @@
     </div>
 
 </head>
-
 <!-- start of body -->
 
 <body>
 
-    <div class="sidebar">
-        <br>
-        <div class="sidebar-container" id="myissues-container">
-            <a href="/FrontEnd/Templates(html_files)/checkedout.html"> <i class="fa fa-bandcamp"></i>My issues</a>
-        </div>
-        <br>
-        <br>
-        <div class="sidebar-container" id="wishlist-container">
-            <a href="/FrontEnd/Templates(html_files)/wishlist.html"> <i class="fa fa-bookmark"></i>Wishlist </a>
-        </div>
-        <br>
-        <br>
-        <div class="sidebar-container" id="checkIn-container">
-            <a href="#"> <i class="fa fa-calendar-check-o"></i>Check In</a>
-        </div>
-        <br>
-        <br>
-        <div class="sidebar-container" id="profile-container">
-            <a href="/FrontEnd/Templates(html_files)/userProfile.html"> <i class="fa fa-user-o"></i>Profile</a>
-        </div>
-        <br>
-        <br>
-        <div class="sidebar-container" id="logout-container">
-            <a href="/FrontEnd/Templates(html_files)/home_page.html"> <i class="fa fa-arrow-circle-left"></i>Log Out</a>
-        </div>
-    </div>
+    <body style="background-color: #4d597e;">
 
-    
+        <div class="container">
+
+            <div class="sidebar">
+                <br>
+                <div class="sidebar-container" id="myissues-container">
+                    <a href="/FrontEnd/Templates(html_files)/checkedout.html"> <i class="fa fa-bandcamp"></i>My
+                        issues</a>
+                </div>
+                <br>
+                <br>
+                <div class="sidebar-container" id="wishlist-container">
+                    <a href="/FrontEnd/Templates(html_files)/wishlist.html"> <i class="fa fa-bookmark"></i>Wishlist </a>
+                </div>
+                <br>
+                <br>
+                <div class="sidebar-container" id="checkIn-container">
+                    <a href="/FrontEnd/Templates(html_files)/checkin.html"> <i class="fa fa-calendar-check-o"></i>Check In</a>
+                </div>
+                <br>
+                <br>
+                <div class="sidebar-container" id="profile-container">
+                    <a href="/FrontEnd/Templates(html_files)/userProfile.html"> <i class="fa fa-user-o"></i>Profile</a>
+                </div>
+                <br>
+                <br>
+                <div class="sidebar-container" id="logout-container">
+                    <a href="/FrontEnd/Templates(html_files)/home_page.html"> <i class="fa fa-arrow-circle-left"></i>Log
+                        Out</a>
+                </div>
+            </div>
+
+            <div class="book-list">
+                <div id="list-output" class=""></div>
+            </div>
+
+            
+
+        </div>
+
+        <div id="pagination-wrapper" class="pagination-wrapper">
+            <i class="fa fa-solid fa-angle-left" onclick="previousPage()" id="prev-btn"></i>
+        
+      
+            <i class="fa fa-solid fa-circle" onclick="reset()" id="reset-btn"></i>
+      
+        
+            <i class="fa fa-solid fa-angle-right" onclick="nextPage()" id="next-btn"></i>
+        </div>
 
 
-</body>
+
+    </body>
 
 </html>
