@@ -32,7 +32,7 @@ document.getElementById('signfirst-btn').onclick = function()
 });
 }
 */
-
+/*
 const { Client } = require('pg')
 //const mysql = require('mysql')
 //const dotenv = require('dotenv')
@@ -61,4 +61,4 @@ client.connect(function(err) {
     client.end()
   });
   
-});
+});*/

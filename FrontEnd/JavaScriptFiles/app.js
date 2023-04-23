@@ -31,7 +31,7 @@ const client = new Client({
 client.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
-  client.query("SELECT * FROM wishlist;", function (err, result) {
+  client.query("SELECT * FROM profile;", function (err, result) {
     if (err) throw err;
     console.log(result);
     //Note: You need client.end() so that the code can end.
