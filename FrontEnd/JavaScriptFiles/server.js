@@ -115,28 +115,6 @@ app.post('/wishlistBook', (req, res) => {
     client.query(generalQuery);
 });
 
-app.post('/checkoutBook', (req, res) => {
-    const { bookID, userID } = req.body;
-    console.log(req.body);
-    res.send("Book stored successfully.");
-    //Create the query:
-    const query = "INSERT INTO Check_In_Out (bookID, ID) VALUES ('" + bookID + "', '" + userID + "');";
-    //Query:
-    client.query(query)
-        //Successful:
-        .then(result => {
-            console.log('INSERTED: ' + query);
-        })
-        //Error occurred:
-        .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
-        });
-    //Insert into general table:
-    const generalQuery = "INSERT INTO GeneralUser (ID) VALUES ('" + userID + "');";
-    client.query(generalQuery);
-});
-
 
 //https://stackoverflow.com/questions/54473981/how-to-combine-app-post-and-app-get-to-one-in-node-js
 app.post('/loginUser', (req, res) => {
@@ -161,11 +139,30 @@ app.post('/loginUser', (req, res) => {
         }); 
 });
 
+app.post('/deleteFromWishlist', (req, res) => {
+    console.log(req.body);
+    const { bookID, ID } = req.body;
+    
+    //Create the query:
+    const query = "DELETE FROM wishlist WHERE bookID = '" + bookID + "' AND id = '" + ID + "';"; 
+    //Query:
+    client.query(query, (err, result) => {
+        if (err) {
+          console.error('Failed to execute query:', err);
+          res.status(500).send('Failed to delete from wishlist');
+        } else {
+          console.log('Successfully deleted from wishlist');
+          res.status(200).send('Successfully deleted from wishlist');
+        }
+      });
+
+});
+
 // app.post for wishlist.html: 
 // *--Returns the wishlist table--*
 app.get('/wishlist', (req, res) => {
     // Gets query from the database:
-    client.query("SELECT * FROM wishlist")
+    client.query('SELECT * FROM wishlist')
         //Returns the query:
         .then(result => {
             console.log('Query result:', result.rows);
@@ -179,14 +176,11 @@ app.get('/wishlist', (req, res) => {
         });
 });
 
-// app.post for checkedOut.html: 
-// *--Returns the checked_in_out table--*
-app.get('/Checked_In_Out', (req, res) => {
+// app.post for checked_in_out.html: 
+// *--Returns the wishlist table--*
+app.get('/checked', (req, res) => {
     // Gets query from the database:
-    // client.query("INSERT INTO checked_In_Out VALUES ('0001', '2050-01-01', 'true','aUapyTwTa6QC')");
-    // client.query("INSERT INTO checked_In_Out VALUES ('0001', '2050-01-01', 'true','2bkBhxD59vAC')");
-
-    client.query("SELECT * FROM Checked_In_Out")
+    client.query('SELECT * FROM checked_in_out')
         //Returns the query:
         .then(result => {
             console.log('Query result:', result.rows);
