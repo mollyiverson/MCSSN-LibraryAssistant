@@ -31,9 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function sendData() {
+        books.length = 0;
         var xhr = new XMLHttpRequest();
         //Runs the script:
-        xhr.open("GET", "http://localhost:3000/Checked_In_Out", true);
+        xhr.open("GET", "http://localhost:3000/checked", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhr.onreadystatechange = function () {
             //Checks the request:
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             bookCount = bookCount + 1;
                         }
                     }
-                    getBookData(0);
+                    getBookData();
                 } else {
                     console.error('Failed to make POST request:', xhr.status);
                 }
@@ -145,12 +146,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var wrapper = document.createElement('div');
         wrapper.innerHTML = htmlCard;
-        // button.addEventListener('click', function () {
-        //     localStorage.setItem("bookID", bookID);
-        //     window.location.href = "book.html";
-        //   });
+        var button = wrapper.querySelector("#returnButton");
+        button.addEventListener('click', function () {
+            onDeleteButtonClick(bookID);
+        });
         return wrapper.firstChild;
     }
+
+    function onDeleteButtonClick(constant) {
+        alert("Deleting book: " + constant);
+        
+        //Gets user typed values:
+        var book = constant;
+        var id = localStorage.currentUser;
+        console.log(constant);
+        //Generates id:
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        xhr.open("POST", "http://localhost:3000/deleteFromCheckedOut", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        //Set payload and send in string format:
+        var payload = ({ bookID: book, ID: id });
+        xhr.send(JSON.stringify( payload ));
+        console.log(JSON.stringify(payload));
+        xhr.onreadystatechange = function() {
+          //Checks the request:
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            //Success:
+            if (xhr.status === 200) {
+              console.log("Deleted");
+              bookCount--;
+            } else {
+              //Failure:
+              console.error('Failed to make POST request:', xhr.status);
+            }
+          };
+
+        };
+        currentIndex = 1;
+        outputList.innerHTML = "";
+        row.innerHTML = "";
+        sendData()
+      };
+
 
     // Goes to the next 10 results from the wishlist
     function nextPage() {
