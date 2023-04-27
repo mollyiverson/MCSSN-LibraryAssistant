@@ -137,6 +137,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       outputList.appendChild(row);
     }
+    if (response.items.length < 10) {
+      booksNext = false;
+    }
   }
 
   function formatOutput(bookImg, title, author, bookID) {
