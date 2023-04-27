@@ -43,14 +43,14 @@ function recommend() {
    var h = countChecksByType("worsee");  // 1
 
    // Getting the IDS of the books we want to display
-   var goodBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
-   var gooodBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
-   var okBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
-   var okkBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
-   var badBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
-   var baadBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
-   var worseBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
-   var worseeBooks = ['3F4yY_v6dw7ZsC', 'oMXQBAAAQBAJ'];
+   var goodBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   var gooodBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   var okBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   var okkBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   var badBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   var baadBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   var worseBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   var worseeBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
 
    // As long as the user select an option, the user receives a book recommendation related to that feeling
 
@@ -63,8 +63,8 @@ function recommend() {
       if (window.confirm(question) == true) {
          setTimeout(function () {
 
-            //window.location.href = "FrontEnd/Templates(html_files)/book.html?id=3F4yY_v6dw7ZsC";
-            //window.location.href = "FrontEnd/Templates(html_files)/book.html?q=3F4yY_v6dw7ZsC";
+            //window.location.href = "FrontEnd/Templates(html_files)/book.html?id=v-rf8osOI6MC";
+            //window.location.href = "FrontEnd/Templates(html_files)/book.html?q=v-rf8osOI6MC";
 
             //window.location.href = "FrontEnd/Templates(html_files)/book.html";
             // window.location.href ="https://www.googleapis.com/books/v1/volumes?q=car";
