@@ -1,5 +1,5 @@
 <!--Javascript code for database is in the middle of the code-->
-
+<!--JavaScript code detailed below!-->
 <!DOCTYPE html>
 <html>
 
@@ -49,6 +49,27 @@
   <!--*****************************************************************************************8-->
 <!--Javascript code to access database information-->
     <script>
+      //Code includes functions:
+
+      //Wishlist:
+      //sendData()
+      //onDeleteButtonClick(constant)
+      //onInsertIntoWishlistClick(constant)
+
+      //Checked Out In:
+      //getCheckOut_In()
+      //onCheckOutButtonClick(constant)
+
+      //CreateUser:
+      //getLargestID(callback)
+      //createUser()
+
+      //Login:
+      //login()
+
+      //***********************************************************************8
+      //WISHLIST FUNCTIONS!!!
+      //function to get wishlist data and display in a table:
       function sendData() {
         var xhr = new XMLHttpRequest();
         //Runs the script:
@@ -80,9 +101,138 @@
         xhr.send(/* payload */);
       };
 
+      //Code for deleting a wishlist item on a button click:
+      function onDeleteButtonClick(constant) {
+        alert("Deleting book: " + constant);
+        //Gets user typed values:
+        var book = constant
+        var id = '0001'
+        console.log(constant);
+        //Generates id:
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        xhr.open("POST", "http://localhost:3000/deleteFromWishlist", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        //Set payload and send in string format:
+        var payload = ({ bookID: book, ID: id });
+        xhr.send(JSON.stringify( payload ));
+        console.log(JSON.stringify(payload));
+        xhr.onreadystatechange = function() {
+          //Checks the request:
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            //Success:
+            if (xhr.status === 200) {
+              console.log("Deleted");
+            } else {
+              //Failure:
+              console.error('Failed to make POST request:', xhr.status);
+            }
+          };
+        };
+        sendData()
+      };
 
+
+      //Puts a book into the wishlist on the click of a button:
+      function onInsertIntoWishlistClick(constant) {
+        alert("Inserting book: " + constant);
+        //Gets user typed values:
+        var book = constant
+        var id = '0001'
+        console.log(constant);
+        //Generates id:
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        xhr.open("POST", "http://localhost:3000/insertWishlistBook", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        //Set payload and send in string format:
+        var payload = ({ bookID: book, ID: id });
+        xhr.send(JSON.stringify( payload ));
+        console.log(JSON.stringify(payload));
+        xhr.onreadystatechange = function() {
+          //Checks the request:
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            //Success:
+            if (xhr.status === 200) {
+              console.log("Deleted");
+            } else {
+              //Failure:
+              console.error('Failed to make POST request:', xhr.status);
+            }
+          };
+        };
+        sendData()
+      };
+
+      //***************************************************
+      //CHECKED OUT IN FUNCTIONS!!!
+      //Creates a table for checked out and checked in books:
+      function getCheckOut_In() {
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        xhr.open("GET", "http://localhost:3000/checked", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onreadystatechange = function () {
+          //Checks the request:
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+              //Response from the function:
+              var response = xhr.response;
+              //Parses the response as it is originally a string but needs to become the returned list from the database:
+              var response = JSON.parse(response)
+              //Displays in a table:
+              var table = '<table><tr><th>Number</th><th>BookID</th><th>Return Date</th><th>Checked Out</th></tr>';
+              for (var i = 0; i < response.length; i++) {
+                        //logs the row as a test:
+                        console.log(response[i]);
+                        //Displays isbn and id:
+                        table += '<tr><td>' + (i + 1) + '</td><td>' + response[i].bookid + '</td><td>' + response[i].return_date.substr(0,10) + '</td><td>' + response[i].check_in + '</td></tr>';
+                    }
+                    table += '</table>';
+                    document.getElementById("result").innerHTML = table;
+            } else {
+                console.error('Failed to make POST request:', xhr.status);
+            }
+          }
+        };
+        xhr.send(/* payload */);
+      };
+
+      //Function to insert a book into checked_out_in as a checked out book on a button click:
+      function onCheckOutButtonClick(constant) {
+        alert("Checking Out Book: " + constant);
+        //Gets user typed values:
+        var book = constant
+        var id = '0001'
+        console.log(constant);
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        xhr.open("POST", "http://localhost:3000/checkOut", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        //Set payload and send in string format:
+        var payload = ({ id: id, bookID: book });
+        xhr.send(JSON.stringify( payload ));
+        console.log(JSON.stringify(payload));
+        xhr.onreadystatechange = function() {
+          //Checks the request:
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            //Success:
+            if (xhr.status === 200) {
+              console.log("Checked Out Book");
+            } else {
+              //Failure:
+              console.error('Failed to make POST request:', xhr.status);
+            }
+          };
+        };
+        sendData()
+      };
+
+
+      //*****************************************************************8
+      ///CREATEUSER FUNCTIONS!!!
       //Javascript code for getting maximum id and returning the next one:
-      function getID(callback) {
+      function getLargestID(callback) {
         var id = "0000"
         var xhr = new XMLHttpRequest();
         //Runs the script:
@@ -118,7 +268,7 @@
         var password = document.getElementById("password").value;
         var id = "0000";
         //Generates id:
-        getID(function(id) {
+        getLargestID(function(id) {
           console.log(id);
           var xhr = new XMLHttpRequest();
           //Runs the script:
@@ -142,6 +292,9 @@
         });
       };
 
+      //*************************************************8
+      //LOGIN FUNCTIONS:
+      //Logins a user:
       function login() {
       //Gets user typed values:
         var username2 = document.getElementById("username2").value;
@@ -162,10 +315,6 @@
             //Success:
             if (xhr.status === 200) {
               console.log("Logged In");
-              //var response = xhr.response;
-              //Parses the response as it is originally a string but needs to become the returned list from the database:
-              //var response = JSON.parse(response);
-              //console.log(response[0].id);
             } else {
               //Failure:
               console.error('Failed to make POST request:', xhr.status);
@@ -174,40 +323,12 @@
         };
       };
 
-      function onDeleteButtonClick(constant) {
-        alert("Deleting book: " + constant);
-        
-      //Gets user typed values:
-        var book = constant
-        var id = '0001'
-        console.log(constant);
-        //Generates id:
-        var xhr = new XMLHttpRequest();
-        //Runs the script:
-        xhr.open("POST", "http://localhost:3000/deleteFromWishlist", true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        //Set payload and send in string format:
-        var payload = ({ bookID: book, ID: id });
-        xhr.send(JSON.stringify( payload ));
-        console.log(JSON.stringify(payload));
-        xhr.onreadystatechange = function() {
-          //Checks the request:
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            //Success:
-            if (xhr.status === 200) {
-              console.log("Deleted");
-            } else {
-              //Failure:
-              console.error('Failed to make POST request:', xhr.status);
-            }
-          };
-
-        };
-        sendData()
-      };
+      
 
 
       
+    
+
       
   </script>
 </head>
@@ -244,7 +365,7 @@
 
     <!--***************************************************************************************-->
     <!--CODE FOR DISPLAYING THE JAVASCRIPT DATABASE!!!!!!!!!!!!!-->
-    <body onload="sendData()">
+    <body onload="getCheckOut_In()">
       <!--Displays the variable result from the javascript-->
       <div style="color: white" id="result"></div>
   </body>

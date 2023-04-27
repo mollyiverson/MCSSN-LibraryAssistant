@@ -9,6 +9,23 @@
 //To run the code type in the terminal:
 // 'node JavaScriptFiles/server.js'
 
+//Code includes functions:
+//*****/
+//POST:
+//--"/createUser"
+//--"/insertWishlistBook"
+//--"/loginUser"
+//--"/deleteFromWishlist"
+//--"/checkOut"
+
+//GET:
+//--"/wishlist"
+//--"/checked"
+//--"/getNextID"
+//*****/
+
+var userID = "0000"
+
 const express = require('express');
 const path = require('path');
 const { Client } = require('pg');
@@ -53,23 +70,7 @@ client.connect()
         console.error('Failed to connect to PostgreSQL database:', err);
     });
 
-// Gets the maximum ID:
-//*--Gets the maximum ID--*
-app.get('/getNextID', (req, res) => {
-    // Gets query from the database:
-    client.query('SELECT MAX(ID) FROM Profile;')
-            //Returns the query:
-            .then(result => {
-                console.log('Query result:', result.rows);
-                // Send the query result as JSON response
-                res.json(result.rows);
-            })
-            //Error occurred:
-            .catch(err => {
-                console.error('Failed to execute query:', err);
-                res.status(500).send('Failed to execute query');
-            });
-});
+
 // Insert into profile:
 //*--Inserts a user based on information provided--*
 app.post('/createUser', (req, res) => {
@@ -91,9 +92,13 @@ app.post('/createUser', (req, res) => {
             console.error('Failed to execute query:', err);
             res.status(500).send('Failed to execute query');
         });
+        //Insert into general table:
+    const generalQuery = "INSERT INTO GeneralUser (ID) VALUES ('" + userID + "');";
+    client.query(generalQuery);
 });
 
-app.post('/wishlistBook', (req, res) => {
+//Inserts a wishlistBook to wishlist table
+app.post('/insertWishlistBook', (req, res) => {
     const { bookID, userID } = req.body;
     console.log(req.body);
     res.send("Book stored successfully.");
@@ -110,17 +115,14 @@ app.post('/wishlistBook', (req, res) => {
             console.error('Failed to execute query:', err);
             res.status(500).send('Failed to execute query');
         });
-    //Insert into general table:
-    const generalQuery = "INSERT INTO GeneralUser (ID) VALUES ('" + userID + "');";
-    client.query(generalQuery);
+    
 });
 
-
+//Logins a user:
 //https://stackoverflow.com/questions/54473981/how-to-combine-app-post-and-app-get-to-one-in-node-js
 app.post('/loginUser', (req, res) => {
     console.log(req.body);
     const { username, password } = req.body;
-    
     res.send();
     //Create the query:
     const query = "SELECT ID FROM Profile WHERE userName = '" + username + "' AND password = '" + password + "';";
@@ -128,9 +130,13 @@ app.post('/loginUser', (req, res) => {
     client.query(query)
         //Successful:
         .then(result => {
-            //Need to fix this so that it sends back the id:
-            //console.log('FOUND: '+ result.rows  + query);
-            res.json("please");
+            if (result.rows.length > 0) {
+                const userID = result.rows[0].ID;
+                res.json({ userID });
+              } else {
+                // User not found:
+                res.status(404).send('User not found');
+              }
         })
         //Error occurred:
         .catch(err => {
@@ -139,6 +145,7 @@ app.post('/loginUser', (req, res) => {
         }); 
 });
 
+//Deletes a book from the wishlist
 app.post('/deleteFromWishlist', (req, res) => {
     console.log(req.body);
     const { bookID, ID } = req.body;
@@ -156,6 +163,30 @@ app.post('/deleteFromWishlist', (req, res) => {
         }
       });
 
+});
+
+//Checkes Out a book
+app.post('/checkOut', (req, res) => {
+    console.log(req.body);
+    const { id, bookID } = req.body;
+    const date = new Date()
+    let day = date.getDate() - 5;
+    let month = date.getMonth() + 3;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
+    console.log(currentDate);
+    //Create the query:
+    const query = "INSERT INTO checked_in_out VALUES (ID ='" + id + "', return_date= '" + currentDate + "', check_in='true', bookID ='" + bookID + "');"
+    //Query:
+    client.query(query, (err, result) => {
+        if (err) {
+          console.error('Failed to execute query:', err);
+          res.status(500).send('Failed to delete from wishlist');
+        } else {
+          console.log('Successfully deleted from wishlist');
+          res.status(200).send('Successfully deleted from wishlist');
+        }
+      });
 });
 
 // app.post for wishlist.html: 
@@ -192,6 +223,24 @@ app.get('/checked', (req, res) => {
             console.error('Failed to execute query:', err);
             res.status(500).send('Failed to execute query');
         });
+});
+
+// Gets the maximum ID:
+//*--Gets the maximum ID--*
+app.get('/getNextID', (req, res) => {
+    // Gets query from the database:
+    client.query('SELECT MAX(ID) FROM Profile;')
+            //Returns the query:
+            .then(result => {
+                console.log('Query result:', result.rows);
+                // Send the query result as JSON response
+                res.json(result.rows);
+            })
+            //Error occurred:
+            .catch(err => {
+                console.error('Failed to execute query:', err);
+                res.status(500).send('Failed to execute query');
+            });
 });
 
 // Starts up the express server with the port:
