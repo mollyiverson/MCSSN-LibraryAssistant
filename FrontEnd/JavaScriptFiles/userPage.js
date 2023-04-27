@@ -4,6 +4,6 @@
 // 	})
 
 // Makes sure the entire html document has been loaded
-document.addEventListener('DOMContentLoaded', function () {
+// document.addEventListener('DOMContentLoaded', function () {
 
-});
+// });

@@ -74,7 +74,7 @@
     border-radius: 20px;
     padding-left: 5%;
     padding-right: 5%;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: #516abd; /* #d2c7ff  #b09ef8  #7562c2 */
     display:inline-block
   }
   
@@ -87,7 +87,7 @@
   
   input[type="submit"]{
     font-size: 20px;
-    background-color: #c369e1; 
+    background-color: #4d597e; 
     border-radius: 10px;
     width: 100%;
     padding: 12px 20px;
@@ -127,7 +127,7 @@
   label:hover:before {
     content: "\2713";
     color: white;
-    background-color: #cf6fda;
+    background-color: #080e36; 
     text-align: center;
     line-height: 16px;
   }
