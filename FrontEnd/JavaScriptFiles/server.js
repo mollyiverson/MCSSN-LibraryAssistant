@@ -165,7 +165,6 @@ app.post('/deleteFromWishlist', (req, res) => {
 
 });
 
-<<<<<<< HEAD
 //Checkes Out a book
 app.post('/checkOut', (req, res) => {
     console.log(req.body);
@@ -178,13 +177,6 @@ app.post('/checkOut', (req, res) => {
     console.log(currentDate);
     //Create the query:
     const query = "INSERT INTO checked_in_out VALUES (ID ='" + id + "', return_date= '" + currentDate + "', check_in='true', bookID ='" + bookID + "');"
-=======
-app.post('/deleteFromCheckedOut', (req, res) => {
-    console.log(req.body);
-    const { bookID, ID } = req.body;
-    //Create the query:
-    const query = "DELETE FROM checked_in_out WHERE bookID = '" + bookID + "' AND id = '" + ID + "';"; 
->>>>>>> 3f9ac5eb2e523a01f8e856eec6c59d97d34ef8fe
     //Query:
     client.query(query, (err, result) => {
         if (err) {
@@ -195,10 +187,6 @@ app.post('/deleteFromCheckedOut', (req, res) => {
           res.status(200).send('Successfully deleted from wishlist');
         }
       });
-<<<<<<< HEAD
-=======
-
->>>>>>> 3f9ac5eb2e523a01f8e856eec6c59d97d34ef8fe
 });
 
 // app.post for wishlist.html: 

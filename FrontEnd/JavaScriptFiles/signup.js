@@ -62,3 +62,35 @@ client.connect(function(err) {
   });
   
 });*/
+
+      //Creates a user with the next id using form answers:
+      function createUser() {
+        //Gets user typed values:
+        var email = document.getElementById("email").value;
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var id = "0000";
+        //Generates id:
+        getLargestID(function(id) {
+          console.log(id);
+          var xhr = new XMLHttpRequest();
+          //Runs the script:
+          xhr.open("POST", "http://localhost:3000/createUser", true);
+          xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          //Set payload and send in string format:
+          var payload = ({ email: email, username: username, password: password, id:id });
+          xhr.send(JSON.stringify( payload ));
+          xhr.onreadystatechange = function() {
+            //Checks the request:
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              //Success:
+              if (xhr.status === 200) {
+                console.log("Inserted");
+              } else {
+                //Failure:
+                console.error('Failed to make POST request:', xhr.status);
+              }
+            }
+          };  
+        });
+      };
