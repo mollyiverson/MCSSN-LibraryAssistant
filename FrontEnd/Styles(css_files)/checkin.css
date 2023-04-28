@@ -7,27 +7,26 @@
     color: #727FA8;
 }
 
-.user-list {
-    margin-top: 20px;
-    margin-left: 330px;
+.book-list {
+    margin-top: 5vh;
+    margin-left: 25vw;
     width: 75%;
     height: 100%;
+    /* visibility: hidden; */
 }
 
-.user-list h5 {
-    font: normal 400 20px/1 'Josefin Sans', sans-serif;
-    font-weight: bold;
-    display: inline-block;
+.book-list h5 {
+    /* font: normal 400 20px/1 'Josefin Sans', sans-serif;
+    font-weight: bold; */
 }
 
-.user-list button
+.book-list button
 {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 5px;
+    /* margin-bottom: 20px;
+    padding: 5px; */
 }
 
-.user-list .card {
+.book-list .card {
     background-color: #d2d0d0;
-    margin-bottom: 10%;
+    /* margin-bottom: 10%; */
 }

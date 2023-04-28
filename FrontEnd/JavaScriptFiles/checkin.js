@@ -31,9 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function sendData() {
+        books.length = 0;
         var xhr = new XMLHttpRequest();
         //Runs the script:
-        xhr.open("GET", "http://localhost:3000/Checked_In_Out", true);
+        xhr.open("GET", "http://localhost:3000/checked", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhr.onreadystatechange = function () {
             //Checks the request:
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             bookCount = bookCount + 1;
                         }
                     }
-                    getBookData(0);
+                    getBookData();
                 } else {
                     console.error('Failed to make POST request:', xhr.status);
                 }
@@ -64,8 +65,13 @@ document.addEventListener('DOMContentLoaded', function () {
         max = currentIndex + booksPerPage;
         for (var i = currentIndex; i < max; i++) {
             if (i < bookCount) {
-                row.classList.add("row");
-                useAPI(i, row);
+                if (i % 2 == 0) {
+                    row.classList.add("row"); // add row class to row variable
+                    useAPI(i, row);
+                }
+                else {
+                    useAPI(i, row);
+                }
                 currentIndex++;
             }
         }
@@ -82,6 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             success: function (response) {
                 displayResults(response, row);
+
+
             },
             error: function () {
                 alert("Error - try again!");
@@ -98,13 +106,14 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // card 1
         var title1 = response.volumeInfo.title;
         var author1 = response.volumeInfo.authors || "";
         var bookID = response.id;
         var bookImg1 = response.volumeInfo.imageLinks && response.volumeInfo.imageLinks.thumbnail ? response.volumeInfo.imageLinks.thumbnail : placeHldr || "image not available";
         var card1 = formatOutput(bookImg1, title1, author1, bookID);
         var col1 = document.createElement("div");
-        col1.classList.add("col-lg-12");
+        col1.classList.add("col-lg-6");
         col1.appendChild(card1);
         row.appendChild(col1);
         outputList.appendChild(row);
@@ -120,12 +129,15 @@ document.addEventListener('DOMContentLoaded', function () {
               <div class="card" style="">
                 <div class="row no-gutters">
                   <div class="col-md-2">
-                    <img src="${bookImg}" class="card-img" alt="book cover" height="50">
+                    <img src="${bookImg}" class="card-img" alt="book cover">
                   </div>
                   <div class="col-md-5">
                     <div class="card-body">
-                      <h5 class="card-title">${title} by ${author}</h5>
-                      <button id="readButton" class="btn btn-secondary">Return book</button>
+                      <h5 class="card-title">${title}</h5>
+                      <p class="card-text">${author}</p>
+                      <button id="readButton" class="btn btn-secondary">Read Book</button>
+                      <button id="returnButton" class="btn btn-secondary">Return Book</button>
+                      <button id="wishlistButton" class="btn btn-secondary">Add to Wishlist</button>
                     </div>
                   </div>
                 </div>
@@ -134,12 +146,49 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var wrapper = document.createElement('div');
         wrapper.innerHTML = htmlCard;
-        // button.addEventListener('click', function () {
-        //     localStorage.setItem("bookID", bookID);
-        //     window.location.href = "book.html";
-        //   });
+        var button = wrapper.querySelector("#returnButton");
+        button.addEventListener('click', function () {
+            onDeleteButtonClick(bookID);
+        });
         return wrapper.firstChild;
     }
+
+    function onDeleteButtonClick(constant) {
+        alert("Deleting book: " + constant);
+        
+        //Gets user typed values:
+        var book = constant;
+        var id = localStorage.currentUser;
+        console.log(constant);
+        //Generates id:
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        xhr.open("POST", "http://localhost:3000/deleteFromCheckedOut", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        //Set payload and send in string format:
+        var payload = ({ bookID: book, ID: id });
+        xhr.send(JSON.stringify( payload ));
+        console.log(JSON.stringify(payload));
+        xhr.onreadystatechange = function() {
+          //Checks the request:
+          if (xhr.readyState === XMLHttpRequest.DONE) {
+            //Success:
+            if (xhr.status === 200) {
+              console.log("Deleted");
+              bookCount--;
+            } else {
+              //Failure:
+              console.error('Failed to make POST request:', xhr.status);
+            }
+          };
+
+        };
+        currentIndex = 1;
+        outputList.innerHTML = "";
+        row.innerHTML = "";
+        sendData()
+      };
+
 
     // Goes to the next 10 results from the wishlist
     function nextPage() {
