@@ -35,7 +35,7 @@
  <!-- <h1> Book </h1> -->
       <!-- #c680e2-->
   <div class="w3-conatiner w3-center w3-text-white" style="background-color:#080e36;"> <!-- #c680e2 -->
-    <h1> QUIZ : Choose your mood, get a book recommendation </h1>
+    <h1> QUIZ : Choose your mood (one), get a book recommendation </h1>
   </div>
 
   <br>
@@ -54,30 +54,31 @@
   </div>
 
   <!--handle our form logic-->
-
-  <div class="quiz" name = "choiceForm" onsubmit="recommend()">
+  
+  <!-- <div class="quiz" name = "choiceForm" onsubmit="recommend()"> -->
+  <div class="quiz" id ="choiceForm" onsubmit="recommend()">
     <form>
-        <input class = "box" type="checkbox" id="Good1" name="good" value="1">
-        <label for="Good1"> Happiness, joy, excitment </label><br>
-        <input class = "box" type="checkbox" id="Good2" name="goood" value="1">
-        <label for="Good2"> Contentment, satisfaction, relaxation </label><br>
+      <input class="box" type="radio" id="good" name="book">
+      <label for="good"> Happiness, joy, excitment </label><br>
+      <input class="box" type="radio" id="goood" name="book">
+      <label for="good"> Contentment, satisfaction, relaxation </label><br>
 
-        <input class = "box" type="checkbox" id="Ok1" name="ok" value="1">
-        <label for="Ok1"> Confused </label><br>
-        <input class = "box" type="checkbox" id="Ok2" name="okk" value="1">
-        <label for="Ok2"> Despair, hopelessness, distress </label><br>
+      <input class="box" type="radio" id="ok" name="book">
+      <label for="ok"> Confused </label><br>
+      <input class="box" type="radio" id="okk" name="book">
+      <label for="okk"> Despair, hopelessness, distress </label><br>
 
-        <input class = "box" type="checkbox" id="Bad1" name="bad" value="1">
-        <label for="Bad1"> Anger, frustration, hostility </label><br>
-        <input class = "box" type="checkbox" id="Bad2" name="baad" value="1">
-        <label for="Bad2"> Fear, apprehension, panic </label><br>
+      <input class="box" type="radio" id="bad" name="book">
+      <label for="bad"> Anger, frustration, hostility </label><br>
+      <input class="box" type="radio" id="baad" name="book">
+      <label for="baad"> Fear, apprehension, panic </label><br>
 
-        <input class = "box" type="checkbox" id="Worse1" name="worse" value="1">
-        <label for="Worse1"> Sadness, disappointment, grief </label><br>
-        <input class = "box" type="checkbox" id="Worse2" name="worsee" value="1">
-        <label for="Worse2"> Guilt, regret, shame  </label><br>
+      <input class="box" type="radio" id="worse" name="book">
+      <label for="worse"> Sadness, disappointment, grief </label><br>
+      <input class="box" type="radio" id="worsee" name="book">
+      <label for="worsee"> Guilt, regret, shame  </label><br>
 
-        <input type="submit" value="Submit The Form">
+      <input type="submit" value="Submit The Form">
     </form>
 
   </div> <!--Quiz div end-->

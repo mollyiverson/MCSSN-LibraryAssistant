@@ -15,142 +15,124 @@ pauseButton.addEventListener("click", function () {
    pauseButton.style.display = "none";
    playButton.style.display = "block";
 });
-
-// Keep track of the option selected
-function countChecksByType(type) {
-
-   var checkMarksOfType = document.getElementsByName(type);
-   var totalChecked = 0;
-
-   for (var i = 0; i < checkMarksOfType.length; i++) {
-      if (checkMarksOfType[i].checked) {
-         totalChecked++;
-      }
-   }
-   return totalChecked;
+  
+   // Keep track of the option selected
+function countChecksById(id) {
+   const checkboxes = document.querySelectorAll(`input[type="radio"][name="book"][id="${id}"]`);
+   let count = 0;
+   checkboxes.forEach((checkbox) => {
+     if (checkbox.checked) {
+       count++;
+     }
+   });
+   return count;
 }
 
 function recommend() {
+   var a = countChecksById("good");  // 1
+   var c = countChecksById("ok"); // 1
+   var e = countChecksById("bad");  // 1
+   var g = countChecksById("worse");  // 1
 
-   var a = countChecksByType("good");  // 1
-   var c = countChecksByType("ok"); // 1
-   var e = countChecksByType("bad");  // 1
-   var g = countChecksByType("worse");  // 1
+   var b = countChecksById("goood");  // 1
+   var d = countChecksById("okk"); // 1
+   var f = countChecksById("baad");  // 1
+   var h = countChecksById("worsee");  // 1
 
-   var b = countChecksByType("goood");  // 1
-   var d = countChecksByType("okk"); // 1
-   var f = countChecksByType("baad");  // 1
-   var h = countChecksByType("worsee");  // 1
+   // Getting the IDS of the books we want to display from the API
+   var goodBooks = ['7GlqKE_s4vwC','9CPXCwAAQBAJ','OkwVkUv2yYcC'];
+   var gooodBooks = ['nGLibwAACAAJ','6t9M6EvD0tAC','-IPSJjbtYoQC'];
+   var okBooks = ['Xo9MAAAAIAAJ','pTr44Sx6oWQC','MLacAgAAQBAJ'];
+   var okkBooks = ['whlgAAAAMAAJ','MhkKyAEACAAJ','LNsMvgAACAAJ'];
+   var badBooks = ['x-OVAwAAQBAJ','2E6PEAAAQBAJ','aDDeRMWIqw4C'];
+   var baadBooks = ['gKeOqLFgQ8oC','UvXWAAAAMAAJ','CdZIn4b9s4UC'];
+   var worseBooks = ['0Z8HoLfjOQQC','hJpExsJiTW8C','sEH18bk4wakC'];
+   var worseeBooks = ['Ut-jmAEACAAJ','kKhPEAAAQBAJ','uLMhEAAAQBAJ'];
 
-   // Getting the IDS of the books we want to display
-   var goodBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
-   var gooodBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
-   var okBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
-   var okkBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
-   var badBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
-   var baadBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
-   var worseBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
-   var worseeBooks = ['v-rf8osOI6MC', 'oMXQBAAAQBAJ'];
+   let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
 
    // As long as the user select an option, the user receives a book recommendation related to that feeling
 
-   if (a >= 1) {
+   if (a == 1) {
       var randomBookId = goodBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       // When the user chooses 'OK', the user will be redirected to another page 
       // When the user selects 'Cancel', the user stays on the same page
 
       if (window.confirm(question) == true) {
          setTimeout(function () {
-
-            //window.location.href = "FrontEnd/Templates(html_files)/book.html?id=v-rf8osOI6MC";
-            //window.location.href = "FrontEnd/Templates(html_files)/book.html?q=v-rf8osOI6MC";
-
-            //window.location.href = "FrontEnd/Templates(html_files)/book.html";
             // window.location.href ="https://www.googleapis.com/books/v1/volumes?q=car";
-
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 
    if (b == 1) {
-      //alert("Reccomended reading: Contentment, satisfaction, relaxation books");
       var randomBookId = gooodBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       if (window.confirm(question) == true) {
          setTimeout(function () {
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 
    if (c == 1) {
       var randomBookId = okBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       if (window.confirm(question) == true) {
          setTimeout(function () {
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 
    if (d == 1) {
       var randomBookId = okkBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       if (window.confirm(question) == true) {
          setTimeout(function () {
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 
    if (e == 1) {
       var randomBookId = badBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       if (window.confirm(question) == true) {
          setTimeout(function () {
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 
    if (f == 1) {
       var randomBookId = baadBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       if (window.confirm(question) == true) {
          setTimeout(function () {
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 
    if (g == 1) {
       var randomBookId = worseBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       if (window.confirm(question) == true) {
          setTimeout(function () {
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 
    if (h == 1) {
       var randomBookId = worseeBooks[Math.floor(Math.random() * goodBooks.length)];
-      let question = "Click 'OK' to go another page or 'Cancel' to stay on the same page";
       if (window.confirm(question) == true) {
          setTimeout(function () {
-            redirectToBookPage(randomBookId);
+            displayBookPage(randomBookId);
          }, 10);
       }
    }
 }
 
 
-function redirectToBookPage(bookId) {
+function displayBookPage(bookId) {
    localStorage.setItem("bookID", bookId);
-   var url = "/FrontEnd/Templates(html_files)/book.html";
-   window.location.href = url;  // Go to the other page
+   var link = "/FrontEnd/Templates(html_files)/book.html";
+   window.location.href = link; 
 }
-
-/* <button type="button" onclick="recommend()">Submit</button> */

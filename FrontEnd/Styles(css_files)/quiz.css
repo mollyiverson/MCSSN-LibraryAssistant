@@ -1,4 +1,4 @@
-*{
+ *{
     margin:0;
     box-sizing: border-box;
   }
@@ -63,9 +63,12 @@
     font-size: 25px;
     text-shadow: 2px 2px #000000;
   }
-
- 
-  /* Other below */
+  
+  .image-right {
+    float: right;
+    height: 25%;
+    width: 25%;
+  }
 
   .quiz{
     margin-top: 5%;
@@ -78,13 +81,6 @@
     display:inline-block
   }
   
-  input[type="checkbox"]{
-    width: 50px;
-    height: 50px;
-    margin-top: 20px;
-    color: white;
-  }
-  
   input[type="submit"]{
     font-size: 20px;
     background-color: #4d597e; 
@@ -94,10 +90,6 @@
     margin: 8px 0;
     box-sizing: border-box;
     color: white;
-  }
-  
-  .box {
-    display: none;
   }
   
   label {
@@ -122,8 +114,15 @@
     background-color: #ffffff;
     border: 1px solid #666666;
   }
-  
-  input[type=checkbox]:checked + label:before,
+
+  input[type="radio"]{
+    width: 50px;
+    height: 50px;
+    margin-top: 20px;
+    color: white;
+  }
+
+  input[type=radio]:checked + label:before,
   label:hover:before {
     content: "\2713";
     color: white;
@@ -132,9 +131,7 @@
     line-height: 16px;
   }
 
-  .image-right {
-    float: right;
-    height: 25%;
-    width: 25%;
-  }
-       
+  .box {
+    display: none;
+  } 
+  
