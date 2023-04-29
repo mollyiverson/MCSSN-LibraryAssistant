@@ -16,14 +16,27 @@ body {
 .login-div {
   border-radius: 20px;
   position: relative;
-  right: -60%;
-  top: -70%;
+  right: -55%;
+  top: -90%;
   height: 220vh; 
   width: 70vw; 
   max-width: 400px;
   max-height: 550px;
-  background-color: #96b9c6; 
   padding: 60px;
+}
+
+.login-text{
+  position: relative;
+  right: -10%;
+  top: -78%;
+  font-size: 150%;
+}
+
+.no-account {
+  position: relative;
+  font-size: 120%;
+  right: -58%;
+  top: -78%;
 }
 
 .title{
@@ -37,16 +50,16 @@ body {
 
 .form{
   width: 100%;
-  margin-top: 30px;
-  text-align: center;
+  position: relative;
+  left:-10%;
 }
 
 .form input {
   font-size:  18px;
   padding: 10px 20px 10px 5px;
-  margin-bottom: 10px;
+
   position: relative;
-  right: -30px;
+  right: -2%;
   border: none;
   outline: none;
   background: none;
@@ -59,7 +72,9 @@ body {
   border-radius: 40px;
   border: 1px solid rgb(255, 255, 255);
   padding: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+  height: 15%;
+  width: 120%;
 }
 
 .password{
@@ -70,6 +85,9 @@ body {
   border: 1px solid rgb(255, 255, 255);
   padding: 10px;
   margin-bottom: 10px;
+  height: 15%;
+  width: 120%;
+  top:-20%;
 }
 
 .form svg {
@@ -87,41 +105,49 @@ body {
   margin-bottom: 30px;
 }
 
-input.signin-btn {
-  width: 100%;
+.signin-btn {
   padding: 12px 10px;
   border: none;
   font-size: 18px;
-  position: relative;
-  right:5px;
-  background-color: #1762A7;
+  background-color: #8D9EDB;
   color: #fff;
-
+  display: block;
+  margin: 0 auto;
+  border-radius: 50px;
+  height: 15%;
+  width: 120%;
 }
 
+
 .sign-up{
-  color: #1762A7;
   position: relative;
   font-family: 'Poppins', sans-serif;
   font-size: large;
   font-weight: 500, bolder;
+  top: -100%
+}
+
+.login{
+  position: relative;
+  right: -5%;
+  top: -75%;
 }
 
 .forgot{
-color: #1762A7;
+color: #000000;
 font-family: 'Poppins', sans-serif;
 text-align: center;
 position: relative;
 top: 5px;
 font-size: large;
 font-weight: 500, bolder;
+right: -10%;
 }
 
 a {
   text-decoration: none;
   color: #505050;
 }
-
 
 /* other add */
 *{
