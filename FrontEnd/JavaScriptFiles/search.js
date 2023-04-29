@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="card" style="">
             <div class="row no-gutters">
               <div class="col-md-6">
-                <img src="${bookImg}" class="card-img" alt="book cover" height="300">
+                <img src="${bookImg}" class="card-img" alt="book cover" height="275">
               </div>
               <div class="col-md-5">
                 <div class="card-body">
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var button = wrapper.querySelector("#readButton");
     button.addEventListener('click', function () {
       localStorage.setItem("bookID", bookID);
-      window.location.href = "book.html";
+      window.location.href = "/FrontEnd/Templates(html_files)/book.html";
     });
 
 

@@ -171,8 +171,8 @@ body {
 }
 
 .book-list {
-    margin-top: 20px;
-    margin-left: 330px;
+    margin-top: 5vh;
+    margin-left: 25vw;
     width: 75%;
     height: 100%;
     visibility: hidden;

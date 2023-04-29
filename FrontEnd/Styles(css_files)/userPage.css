@@ -1,6 +1,10 @@
 #profile-container a:hover {
   color: #727FA8;
+}
 
+#profile-container
+{
+    background-color: rgb(255, 255, 255);
 }
 
 .body-text h1 {
