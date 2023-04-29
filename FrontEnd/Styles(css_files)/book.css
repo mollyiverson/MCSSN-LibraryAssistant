@@ -67,8 +67,11 @@ body {
 .container button
 {
     width: 100%;
+    /*
     background-color: rgb(238, 232, 232);
-    color:#080e36;
+    color:#080e36; */
+    background-color: #080e36;
+    color: #e6e9f7;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /*font-weight: bold;*/
 }
