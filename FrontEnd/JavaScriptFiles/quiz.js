@@ -1,21 +1,3 @@
-// Audio Logic
-
-var audio = document.getElementById("myAudio");
-var playButton = document.getElementById("playButton");
-var pauseButton = document.getElementById("pauseButton");
-
-playButton.addEventListener("click", function () {
-   audio.play();
-   playButton.style.display = "none";
-   pauseButton.style.display = "block";
-});
-
-pauseButton.addEventListener("click", function () {
-   audio.pause();
-   pauseButton.style.display = "none";
-   playButton.style.display = "block";
-});
-
 // Keep track of the option selected
 function countChecksById(id) {
    const checkboxes = document.querySelectorAll(`input[type="radio"][name="book"][id="${id}"]`);
@@ -96,7 +78,7 @@ function recommend(event) {
 
 function displayBookPage(bookId) {
    localStorage.setItem("bookID", bookId);
-   window.location.href = "/FrontEnd/Templates(html_files)/book.html";
+   window.location.href = "/FrontEnd/Templates(html_files)/book.html"; 
    var link = "/FrontEnd/Templates(html_files)/book.html";
    window.location.href = link;
 }

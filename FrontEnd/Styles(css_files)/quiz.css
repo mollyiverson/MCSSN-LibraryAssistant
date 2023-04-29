@@ -61,7 +61,7 @@ body {
 
 
 body {
-  background-image: url("/FrontEnd/Static(images)/quiz_background.png");
+  background-color: #727FA8;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
