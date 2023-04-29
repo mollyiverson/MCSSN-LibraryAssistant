@@ -81,16 +81,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         var title = document.getElementById("title");
-        title.innerHTML += '<div class="row mt-4">' + '<h1>' + title1 + '</h1> </div';
+        title.innerHTML += '<div class="row mt-4">' + '<h1 style= "font-family: Cambria, serif; font-size: 40px">' + title1 + '</h1> </div';
 
-        var title = document.getElementById("author");
-        title.innerHTML += '<div class="row mt-4">' + '<h1>' + author1 + '</h1> </div';
+        var author = document.getElementById("author");
+        author.innerHTML += '<div class="row mt-4">' + '<h1 style= "font-family: Cambria, serif; font-size: 30px">' + author1 + '</h1> </div';
 
-        var title = document.getElementById("publisher");
-        title.innerHTML += '<div class="row mt-4">' + '<h1>' + publisher1 + '</h1> </div';
+        var publisher = document.getElementById("publisher");
+        publisher.innerHTML += '<div class="row mt-4">' + '<h1 style= "font-size: 15px; font-family: Cambria, serif">' + publisher1 + '</h1> </div';
 
-        var title = document.getElementById("publisher");
-        title.innerHTML += '<div class="row mt-4">' + '<p>' + bookDesc + '</p> </div';
+        var description = document.getElementById("description");
+        description.innerHTML += '<div class="row mt-4">' + '<p>' + bookDesc + '</p> </div';
 
     }
 });
