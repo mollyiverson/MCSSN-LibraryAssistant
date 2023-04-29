@@ -13,6 +13,7 @@
 //*****/
 //POST:
 //--"/createUser"
+//--"/checkUsername"
 //--"/insertWishlistBook"
 //--"/loginUser"
 //--"/deleteFromWishlist"
@@ -93,8 +94,36 @@ app.post('/createUser', (req, res) => {
             res.status(500).send('Failed to execute query');
         });
         //Insert into general table:
-    const generalQuery = "INSERT INTO GeneralUser (ID) VALUES ('" + userID + "');";
+    const generalQuery = "INSERT INTO GeneralUser (ID) VALUES ('" + id + "');";
     client.query(generalQuery);
+});
+
+//Checks if a username is used
+app.post('/checkUsername', (req, res) => {
+    //Gets information from html file:
+    const { username } = req.body;
+    //Display information:
+    console.log(req.body);
+    //Create the query:
+    const query = "SELECT username from Profile WHERE username = '" + username + "';";
+    //Query:
+    client.query(query)
+        //Successful:
+        .then(result => {
+            if (result.rows.length === 0) {
+                res.status(404).send('Username not found');
+                console.log("Username is unique: " + username)
+            }
+            else {
+                res.status(200).send('Failed to execute query');
+                console.log('Username already in profiles: ' + query);
+            }
+        })
+        //Error occurred:
+        .catch(err => {
+            console.error('Username not found:', err);
+            res.status(500).send('Failed to execute query');
+        });
 });
 
 //Inserts a wishlistBook to wishlist table
