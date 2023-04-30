@@ -14,6 +14,8 @@
 //POST:
 //--"/createUser"
 //--"/checkUsername"
+//--"/checkWishlist"
+//--"/checkCheckedOut"
 //--"/insertWishlistBook"
 //--"/loginUser"
 //--"/deleteFromWishlist"
@@ -121,7 +123,63 @@ app.post('/checkUsername', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Username not found:', err);
+            console.error('Username not found and incorrect query:', err);
+            res.status(500).send('Failed to execute query');
+        });
+});
+
+//Checks if a username is used
+app.post('/checkWishlist', (req, res) => {
+    //Gets information from html file:
+    const { id, bookID } = req.body;
+    //Display information:
+    console.log(req.body);
+    //Create the query:
+    const query = "SELECT id from Wishlist WHERE id = '" + id + "' AND bookID='" + bookID + "';";
+    //Query:
+    client.query(query)
+        //Successful:
+        .then(result => {
+            if (result.rows.length === 0) {
+                res.status(404).send('Book not found');
+                console.log("Book is unique: " + bookID)
+            }
+            else {
+                res.status(200).send('Failed to execute query');
+                console.log('Book already in wishlist: ' + query);
+            }
+        })
+        //Error occurred:
+        .catch(err => {
+            console.error('Book not found and incorrect query:', err);
+            res.status(500).send('Failed to execute query');
+        });
+});
+
+//Checks if a username is used
+app.post('/checkCheckedOut', (req, res) => {
+    //Gets information from html file:
+    const { id, bookID } = req.body;
+    //Display information:
+    console.log(req.body);
+    //Create the query:
+    const query = "SELECT id from Wishlist WHERE id = '" + id + "' AND bookID='" + bookID + "';";
+    //Query:
+    client.query(query)
+        //Successful:
+        .then(result => {
+            if (result.rows.length === 0) {
+                res.status(404).send('Book not found');
+                console.log("Book is unique: " + bookID)
+            }
+            else {
+                res.status(200).send('Failed to execute query');
+                console.log('Book already in wishlist: ' + query);
+            }
+        })
+        //Error occurred:
+        .catch(err => {
+            console.error('Book not found and incorrect query:', err);
             res.status(500).send('Failed to execute query');
         });
 });

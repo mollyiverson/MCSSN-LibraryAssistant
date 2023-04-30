@@ -2,11 +2,13 @@
 //Code includes functions:
 
 //Wishlist:
+//checkWishlist()
 //sendData()
 //onDeleteButtonClick(constant)
 //onInsertIntoWishlistClick(constant)
 
 //Checked Out In:
+//checkCheckedOut()
 //getCheckOut_In()
 //onCheckOutButtonClick(constant)
 
@@ -20,6 +22,37 @@
 
 //***********************************************************************8
 //WISHLIST FUNCTIONS!!!
+function checkWishlist(bookID) {
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        var id = "0001"
+        xhr.open("POST", "http://localhost:3000/checkUsername", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        var payload = ({ bookID: bookID, id: id });
+        xhr.send(JSON.stringify( payload ));
+        xhr.onreadystatechange = function () {
+            //Checks the request:
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 404) {
+                console.log("not found")
+                resolve(xhr.responseText);
+                
+            }  
+            if (xhr.status === 200) {
+                console.log("found")
+                reject(xhr.statusText);
+            }
+            else {
+                console.error('Failed to make POST request:', xhr.status);
+                reject(xhr.statusText);
+            }
+            };
+        };
+        console.log("Test")
+        });        
+    }
+
 //function to get wishlist data and display in a table:
 function sendData() {
 var xhr = new XMLHttpRequest();
@@ -121,6 +154,39 @@ sendData()
 
 //***************************************************
 //CHECKED OUT IN FUNCTIONS!!!
+//Checks if a function is checked out
+function checkCheckedOut(bookID) {
+return new Promise(function(resolve, reject) {
+    var xhr = new XMLHttpRequest();
+    var id = "0001"
+    //Runs the script:
+    xhr.open("POST", "http://localhost:3000/checkUsername", true);
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    var payload = ({ bookID: bookID, id: id });
+    xhr.send(JSON.stringify( payload ));
+    xhr.onreadystatechange = function () {
+        //Checks the request:
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 404) {
+            console.log("not found")
+            resolve(xhr.responseText);
+            
+        }  
+        if (xhr.status === 200) {
+            console.log("found")
+            reject(xhr.statusText);
+        }
+        else {
+            console.error('Failed to make POST request:', xhr.status);
+            reject(xhr.statusText);
+        }
+        };
+    };
+    console.log("Test")
+    });
+};
+    
+
 //Creates a table for checked out and checked in books:
 function getCheckOut_In() {
 var xhr = new XMLHttpRequest();
