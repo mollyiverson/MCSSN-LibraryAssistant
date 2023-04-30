@@ -27,7 +27,7 @@ function checkWishlist(bookID) {
         var xhr = new XMLHttpRequest();
         //Runs the script:
         var id = "0001"
-        xhr.open("POST", "http://localhost:3000/checkUsername", true);
+        xhr.open("POST", "http://localhost:3000/checkWishlist", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         var payload = ({ bookID: bookID, id: id });
         xhr.send(JSON.stringify( payload ));
@@ -119,7 +119,6 @@ sendData()
 
 //Puts a book into the wishlist on the click of a button:
 function onInsertIntoWishlistClick(constant) {
-alert("Inserting book: " + constant);
 //Gets user typed values:
 var book = constant
 var id = '0001'
@@ -138,7 +137,7 @@ xhr.onreadystatechange = function() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
     //Success:
     if (xhr.status === 200) {
-        console.log("Deleted");
+        console.log("Inserted");
     } 
     else if (xhr.status === 409) {
         console.log("Cannot insert. Value already inserted.");
@@ -160,7 +159,7 @@ return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
     var id = "0001"
     //Runs the script:
-    xhr.open("POST", "http://localhost:3000/checkUsername", true);
+    xhr.open("POST", "http://localhost:3000/checkCheckedOut", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     var payload = ({ bookID: bookID, id: id });
     xhr.send(JSON.stringify( payload ));
