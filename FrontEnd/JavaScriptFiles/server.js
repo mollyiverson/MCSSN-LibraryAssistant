@@ -182,15 +182,15 @@ app.post('/deleteFromWishlist', (req, res) => {
     //Create the query:
     const query = "DELETE FROM wishlist WHERE bookID = '" + bookID + "' AND id = '" + ID + "';"; 
     //Query:
-    client.query(query, (err, result) => {
-        if (err) {
-          console.error('Failed to execute query:', err);
-          res.status(500).send('Failed to delete from wishlist');
-        } else {
-          console.log('Successfully deleted from wishlist');
-          res.status(200).send('Successfully deleted from wishlist');
-        }
-      });
+    client.query(query)
+        .then(result => {
+            console.log('DELETED: ' + query);
+        })
+        //Error occurred:
+        .catch(err => {
+            console.error('Failed to execute query:', err);
+            res.status(500).send('Failed to execute query');
+        });
 
 });
 
@@ -198,24 +198,22 @@ app.post('/deleteFromWishlist', (req, res) => {
 app.post('/checkOut', (req, res) => {
     console.log(req.body);
     const { id, bookID } = req.body;
-    const date = new Date()
-    let day = date.getDate() - 5;
-    let month = date.getMonth() + 3;
-    let year = date.getFullYear();
-    let currentDate = `${day}-${month}-${year}`;
+    const date = new Date();
+    date.setDate(date.getDate() - 5);
+    const currentDate = date.toISOString().substr(0, 10);
     console.log(currentDate);
     //Create the query:
-    const query = "INSERT INTO checked_in_out VALUES (ID ='" + id + "', return_date= '" + currentDate + "', check_in='true', bookID ='" + bookID + "');"
+    const query = "INSERT INTO checked_in_out VALUES ('" + id + "', '" + currentDate + "', 'true', '" + bookID + "');"
     //Query:
-    client.query(query, (err, result) => {
-        if (err) {
-          console.error('Failed to execute query:', err);
-          res.status(500).send('Failed to delete from wishlist');
-        } else {
-          console.log('Successfully deleted from wishlist');
-          res.status(200).send('Successfully deleted from wishlist');
-        }
-      });
+    client.query(query) 
+        .then(result => {
+            console.log('INSERTED: ' + query);
+        })
+        //Error occurred:
+        .catch(err => {
+            console.error('Failed to execute query:', err);
+            res.status(500).send('Failed to execute query');
+        });
 });
 
 // app.post for wishlist.html: 
