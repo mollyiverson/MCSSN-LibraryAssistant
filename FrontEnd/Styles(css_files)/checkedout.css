@@ -24,6 +24,8 @@
 
 .book-list button
 {
+    background-color: #080e36;
+    font-size: 15px;
     margin-bottom: 20px;
     padding: 5px;
 }

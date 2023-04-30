@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var placeHldr = "/FrontEnd/Static(images)/image-not-found-icon.png";
     var row = document.createElement("div");
 
+    var user;
+
     // Calls functions when the next page, previous page, and back to the start buttons are clicked
     document.querySelector('.fa-circle').addEventListener('click', reset);
     document.querySelector('.fa-angle-right').addEventListener('click', nextPage);
@@ -25,12 +27,22 @@ document.addEventListener('DOMContentLoaded', function () {
     window.onload = function () {
         if (!localStorage.getItem("currentUser")) // the value of the current user should have been set when they log in
         {
-            localStorage.currentUser = "0001";
+            user = "0001";
+        }else{
+            user = localStorage["currentUser"];
         }
+        // onCheckOutButtonClick("Gq5hEAAAQBAJ");
+        // onCheckOutButtonClick("7zWkCwAAQBAJ");
+        // onCheckOutButtonClick("pMqSDwAAQBAJ");
         sendData();
     }
 
     function sendData() {
+        currentIndex = 0;
+        outputList.innerHTML = "";
+        row.innerHTML = "";
+        paginationWrapper.style.visibility = "hidden";
+        bookCount = 0;
         books.length = 0;
         var xhr = new XMLHttpRequest();
         //Runs the script:
@@ -45,11 +57,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     //Parses the response as it is originally a string but needs to become the returned list from the database:
                     var response = JSON.parse(response)
                     for (var i = 0; i < response.length; i++) {
-                        if (response[i].id.trim() == localStorage.getItem("currentUser")) {
+                        if (response[i].id.trim() == user) {
                             //logs the row as a test:
                             console.log(response[i]);
-                            books[bookCount] = response[i].bookid;
-                            bookCount = bookCount + 1;
+                            if (response[i].bookid.trim() != 'undefined') {
+                                books[bookCount] = response[i].bookid;
+                                bookCount++;
+                            }
                         }
                     }
                     getBookData();
@@ -119,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         outputList.appendChild(row);
 
         // displays the prev/next/current page buttons after all books have been displayed
-        if (currentIndex >= bookCount || currentIndex >= max) {
+        if ((currentIndex >= bookCount || currentIndex >= max) && bookCount > booksPerPage) {
             paginationWrapper.style.visibility = "visible";
         }
     }
@@ -135,9 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="card-body">
                       <h5 class="card-title">${title}</h5>
                       <p class="card-text">${author}</p>
-                      <button id="readButton" class="btn btn-secondary">Read Book</button>
+                      <button id="readButton" class="btn btn-secondary">Select Book</button>
                       <button id="returnButton" class="btn btn-secondary">Return Book</button>
-                      <button id="wishlistButton" class="btn btn-secondary">Add to Wishlist</button>
                     </div>
                   </div>
                 </div>
@@ -146,19 +159,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var wrapper = document.createElement('div');
         wrapper.innerHTML = htmlCard;
-        var button = wrapper.querySelector("#returnButton");
-        button.addEventListener('click', function () {
+        var returnButton = wrapper.querySelector("#returnButton");
+        returnButton.addEventListener('click', function () {
             onDeleteButtonClick(bookID);
+        });
+
+        var readButton = wrapper.querySelector("#readButton");
+        readButton.addEventListener('click', function () {
+            localStorage.setItem("bookID", bookID);
+            window.location.href = "/FrontEnd/Templates(html_files)/book.html";
         });
         return wrapper.firstChild;
     }
 
     function onDeleteButtonClick(constant) {
-        alert("Deleting book: " + constant);
-        
         //Gets user typed values:
         var book = constant;
-        var id = localStorage.currentUser;
+        var id = user;
         console.log(constant);
         //Generates id:
         var xhr = new XMLHttpRequest();
@@ -167,27 +184,25 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         //Set payload and send in string format:
         var payload = ({ bookID: book, ID: id });
-        xhr.send(JSON.stringify( payload ));
+        xhr.send(JSON.stringify(payload));
         console.log(JSON.stringify(payload));
-        xhr.onreadystatechange = function() {
-          //Checks the request:
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            //Success:
-            if (xhr.status === 200) {
-              console.log("Deleted");
-              bookCount--;
-            } else {
-              //Failure:
-              console.error('Failed to make POST request:', xhr.status);
-            }
-          };
+        xhr.onreadystatechange = function () {
+            //Checks the request:
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                //Success:
+                if (xhr.status === 200) {
+                    console.log("Deleted");
+                    bookCount--;
+                } else {
+                    //Failure:
+                    console.error('Failed to make POST request:', xhr.status);
+                }
+            };
 
         };
-        currentIndex = 1;
-        outputList.innerHTML = "";
-        row.innerHTML = "";
-        sendData()
-      };
+
+        sendData();
+    };
 
 
     // Goes to the next 10 results from the wishlist
@@ -222,4 +237,37 @@ document.addEventListener('DOMContentLoaded', function () {
             getBookData();
         }
     }
+
+    // function onCheckOutButtonClick(constant) {
+    //     alert("Checking Out Book: " + constant);
+    //     //Gets user typed values:
+    //     var book = constant
+    //     var id = '0001'
+    //     console.log(constant);
+    //     var xhr = new XMLHttpRequest();
+    //     //Runs the script:
+    //     xhr.open("POST", "http://localhost:3000/checkOut", true);
+    //     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    //     //Set payload and send in string format:
+    //     var payload = ({ id: id, bookID: book });
+    //     xhr.send(JSON.stringify(payload));
+    //     console.log(JSON.stringify(payload));
+    //     xhr.onreadystatechange = function () {
+    //         //Checks the request:
+    //         if (xhr.readyState === XMLHttpRequest.DONE) {
+    //             //Success:
+    //             if (xhr.status === 200) {
+    //                 console.log("Checked Out Book");
+    //             }
+    //             else if (xhr.status === 409) {
+    //                 console.log("Cannot insert. Value already inserted.");
+    //                 alert("Book already checked out")
+    //             }
+    //             else {
+    //                 //Failure:
+    //                 console.error('Failed to make POST request:', xhr.status);
+    //             }
+    //         };
+    //     };
+    // };
 });

@@ -35,12 +35,12 @@ function checkWishlist(bookID) {
             //Checks the request:
             if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 404) {
-                console.log("not found")
+                console.log("not found");
                 resolve(xhr.responseText);
                 
             }  
             if (xhr.status === 200) {
-                console.log("found")
+                console.log("found");
                 reject(xhr.statusText);
             }
             else {
@@ -89,8 +89,8 @@ xhr.send(/* payload */);
 function onDeleteButtonClick(constant) {
 alert("Deleting book: " + constant);
 //Gets user typed values:
-var book = constant
-var id = '0001'
+var book = constant;
+var id = '0001';
 console.log(constant);
 //Generates id:
 var xhr = new XMLHttpRequest();
@@ -120,14 +120,14 @@ sendData()
 //Puts a book into the wishlist on the click of a button:
 function onInsertIntoWishlistClick(constant) {
 //Gets user typed values:
-var book = constant
-var id = '0001'
+var book = constant;
+var id = '0001';
 console.log(constant);
 //Generates id:
 var xhr = new XMLHttpRequest();
 //Runs the script:
 xhr.open("POST", "http://localhost:3000/insertWishlistBook", true);
-xr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 //Set payload and send in string format:
 var payload = ({ bookID: book, ID: id });
 xhr.send(JSON.stringify( payload ));
@@ -141,7 +141,7 @@ xhr.onreadystatechange = function() {
     } 
     else if (xhr.status === 409) {
         console.log("Cannot insert. Value already inserted.");
-        alert("Book already wishlisted.")
+        alert("Book already wishlisted.");
     } else {
         //Failure:
         console.error('Failed to make POST request:', xhr.status);
@@ -157,7 +157,7 @@ sendData()
 function checkCheckedOut(bookID) {
 return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
-    var id = "0001"
+    var id = "0001";
     //Runs the script:
     xhr.open("POST", "http://localhost:3000/checkCheckedOut", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
@@ -222,8 +222,8 @@ xhr.send(/* payload */);
 function onCheckOutButtonClick(constant) {
 alert("Checking Out Book: " + constant);
 //Gets user typed values:
-var book = constant
-var id = '0001'
+var book = constant;
+var id = '0001';
 console.log(constant);
 var xhr = new XMLHttpRequest();
 //Runs the script:
@@ -292,7 +292,7 @@ console.log("Test")
 
 //Javascript code for getting maximum id and returning the next one:
 function getLargestID(callback) {
-var id = "0000"
+var id = "0000";
 var xhr = new XMLHttpRequest();
 //Runs the script:
 xhr.open("GET", "http://localhost:3000/getNextID", true);
@@ -331,7 +331,7 @@ var id = "0000";
 if (username.length > 3 && password.length > 3) {
     checkUsername(username) 
     .then(function(response){       //not found    
-    console.log("testing")
+    console.log("testing");
     //Generates id:
     getLargestID(function(id) {
     console.log(id);
@@ -347,7 +347,7 @@ if (username.length > 3 && password.length > 3) {
         if (xhr.readyState === XMLHttpRequest.DONE) {
         //Success:
         if (xhr.status === 200) {
-            alert("User Created")
+            alert("User Created");
             console.log("Inserted");
         } else {
             //Failure:
@@ -363,7 +363,7 @@ alert("Username already exists. Choose a different one.");
 });   
 }
 else {
-alert("Username and password need to be more than 3 characters.")
+alert("Username and password need to be more than 3 characters.");
 } 
 }
 
@@ -393,7 +393,7 @@ xhr.onreadystatechange = function() {
     } else {
         //Failure:
         console.error('Failed to make POST request:', xhr.status);
-        alert("Incorrect username or password")
+        alert("Incorrect username or password");
     }
     };
 };
