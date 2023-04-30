@@ -199,7 +199,9 @@ app.post('/checkOut', (req, res) => {
     console.log(req.body);
     const { id, bookID } = req.body;
     const date = new Date();
-    date.setDate(date.getDate() - 5);
+    if (date.getDate() > 28) {
+        date.setDate(date.getDate() - 4) }
+    date.setMonth(date.getMonth() + 2);
     const currentDate = date.toISOString().substr(0, 10);
     console.log(currentDate);
     //Create the query:
