@@ -93,7 +93,27 @@ document.addEventListener('DOMContentLoaded', function () {
         description.innerHTML += '<div class="row mt-4">' + '<p>' + bookDesc + '</p> </div';
 
     }
+
+    // Wishlist and Checkout buttons
+
+    const wishlistButton = document.getElementById('wishlistButton');
+    const checkOutButton = document.getElementById('checkoutButton');
+    wishlistButton.addEventListener('click', addtoWishlist);
+    checkOutButton.addEventListener('click', addtoCheckedOut);
+
+    function addtoCheckedOut() {
+        alert("checkout");
+
+    }
+
+    function addtoWishlist() {
+        alert("wishlist");
+    }
 });
+
+
+
+
 
 /*
     function readBook() {
