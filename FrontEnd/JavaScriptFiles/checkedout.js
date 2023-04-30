@@ -48,8 +48,10 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (response[i].id.trim() == localStorage.getItem("currentUser")) {
                             //logs the row as a test:
                             console.log(response[i]);
-                            books[bookCount] = response[i].bookid;
-                            bookCount = bookCount + 1;
+                            if (response[i].bookid.trim() != 'undefined') {
+                                books[bookCount] = response[i].bookid;
+                                bookCount++;
+                            }
                         }
                     }
                     getBookData();
@@ -119,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
         outputList.appendChild(row);
 
         // displays the prev/next/current page buttons after all books have been displayed
-        if (currentIndex >= bookCount || currentIndex >= max) {
+        if ((currentIndex >= bookCount || currentIndex >= max) && bookCount > booksPerPage) {
             paginationWrapper.style.visibility = "visible";
         }
     }

@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function sendData() {
         books.length = 0;
+        paginationWrapper.style.visibility = "hidden";
+        window.scroll(0, 0);
+        outputList.innerHTML = "";
+        row.innerHTML = "";
         var xhr = new XMLHttpRequest();
         //Runs the script:
         xhr.open("GET", "http://localhost:3000/wishlist", true);
@@ -48,10 +52,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         if (response[i].id.trim() == localStorage.getItem("currentUser")) {
                             //logs the row as a test:
                             console.log(response[i]);
-                            books[bookCount] = response[i].bookid;
-                            bookCount = bookCount + 1;
+                            if (response[i].bookid.trim() != 'undefined') {
+                                books[bookCount] = response[i].bookid;
+                                bookCount++;
+                            }
                         }
                     }
+                    
                     getBookData();
                 } else {
                     console.error('Failed to make POST request:', xhr.status);
@@ -119,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
         outputList.appendChild(row);
 
         // displays the prev/next/current page buttons after all books have been displayed
-        if (currentIndex >= bookCount || currentIndex >= max) {
+        if ((currentIndex >= bookCount || currentIndex >= max) && bookCount > booksPerPage) {
             paginationWrapper.style.visibility = "visible";
         }
     }
@@ -185,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
         currentIndex = 1;
         outputList.innerHTML = "";
         row.innerHTML = "";
-        sendData()
+        sendData();
       };
 
 

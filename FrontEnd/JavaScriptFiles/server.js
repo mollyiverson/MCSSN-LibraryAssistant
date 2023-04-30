@@ -252,6 +252,25 @@ app.post('/deleteFromWishlist', (req, res) => {
 
 });
 
+app.post('/deleteFromCheckedOut', (req, res) => {
+    console.log(req.body);
+    const { bookID, ID } = req.body;
+    
+    //Create the query:
+    const query = "DELETE FROM checked_in_out WHERE bookID = '" + bookID + "' AND id = '" + ID + "';"; 
+    //Query:
+    client.query(query)
+        .then(result => {
+            console.log('DELETED: ' + query);
+        })
+        //Error occurred:
+        .catch(err => {
+            console.error('Failed to execute query:', err);
+            res.status(500).send('Failed to execute query');
+        });
+
+});
+
 //Checkes Out a book
 app.post('/checkOut', (req, res) => {
     console.log(req.body);
