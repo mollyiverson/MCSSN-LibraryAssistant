@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var placeHldr = "/FrontEnd/Static(images)/image-not-found-icon.png";
     var row = document.createElement("div");
 
+    var user;
+
     // Calls functions when the next page, previous page, and back to the start buttons are clicked
     document.querySelector('.fa-circle').addEventListener('click', reset);
     document.querySelector('.fa-angle-right').addEventListener('click', nextPage);
@@ -25,17 +27,23 @@ document.addEventListener('DOMContentLoaded', function () {
     window.onload = function () {
         if (!localStorage.getItem("currentUser")) // the value of the current user should have been set when they log in
         {
-            localStorage.currentUser = "0001";
+            user = "0001";
+        }else{
+            user = localStorage["currentUser"];
         }
+        onInsertIntoWishlistClick("Gq5hEAAAQBAJ");
+        // onInsertIntoWishlistClick("7zWkCwAAQBAJ");
+        // onInsertIntoWishlistClick("pMqSDwAAQBAJ");
         sendData();
     }
 
     function sendData() {
-        books.length = 0;
-        paginationWrapper.style.visibility = "hidden";
-        window.scroll(0, 0);
+        currentIndex = 0;
         outputList.innerHTML = "";
         row.innerHTML = "";
+        paginationWrapper.style.visibility = "hidden";
+        bookCount = 0;
+        books.length = 0;
         var xhr = new XMLHttpRequest();
         //Runs the script:
         xhr.open("GET", "http://localhost:3000/wishlist", true);
@@ -58,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         }
                     }
-                    
+
                     getBookData();
                 } else {
                     console.error('Failed to make POST request:', xhr.status);
@@ -142,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="card-body">
                       <h5 class="card-title">${title}</h5>
                       <p class="card-text">${author}</p>
-                      <button id="checkOutButton" class="btn btn-secondary">Check out book</button>
+                      <button id="readButton" class="btn btn-secondary">Select book</button>
                       <button id="wishlistButton" class="btn btn-secondary">Remove from wishlist</button>
                     </div>
                   </div>
@@ -152,16 +160,22 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var wrapper = document.createElement('div');
         wrapper.innerHTML = htmlCard;
-        var button = wrapper.querySelector("#wishlistButton");
-        button.addEventListener('click', function () {
+        var wishlistButton = wrapper.querySelector("#wishlistButton");
+        wishlistButton.addEventListener('click', function () {
             onDeleteButtonClick(bookID);
+        });
+
+        var readButton = wrapper.querySelector("#readButton");
+        readButton.addEventListener('click', function () {
+            localStorage.setItem("bookID", bookID);
+            window.location.href = "/FrontEnd/Templates(html_files)/book.html";
         });
         return wrapper.firstChild;
     }
 
     function onDeleteButtonClick(constant) {
         alert("Deleting book: " + constant);
-        
+
         //Gets user typed values:
         var book = constant;
         var id = localStorage.currentUser;
@@ -173,27 +187,24 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         //Set payload and send in string format:
         var payload = ({ bookID: book, ID: id });
-        xhr.send(JSON.stringify( payload ));
+        xhr.send(JSON.stringify(payload));
         console.log(JSON.stringify(payload));
-        xhr.onreadystatechange = function() {
-          //Checks the request:
-          if (xhr.readyState === XMLHttpRequest.DONE) {
-            //Success:
-            if (xhr.status === 200) {
-              console.log("Deleted");
-              bookCount--;
-            } else {
-              //Failure:
-              console.error('Failed to make POST request:', xhr.status);
-            }
-          };
+        xhr.onreadystatechange = function () {
+            //Checks the request:
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                //Success:
+                if (xhr.status === 200) {
+                    console.log("Deleted");
+                    bookCount--;
+                } else {
+                    //Failure:
+                    console.error('Failed to make POST request:', xhr.status);
+                }
+            };
 
         };
-        currentIndex = 1;
-        outputList.innerHTML = "";
-        row.innerHTML = "";
         sendData();
-      };
+    };
 
 
     // Goes to the next 10 results from the wishlist
@@ -228,4 +239,37 @@ document.addEventListener('DOMContentLoaded', function () {
             getBookData();
         }
     }
+
+    function onInsertIntoWishlistClick(constant) {
+        alert("Inserting book: " + constant);
+        //Gets user typed values:
+        var book = constant;
+        var id = '0001';
+        console.log(constant);
+        //Generates id:
+        var xhr = new XMLHttpRequest();
+        //Runs the script:
+        xhr.open("POST", "http://localhost:3000/insertWishlistBook", true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        //Set payload and send in string format:
+        var payload = ({ bookID: book, ID: id });
+        xhr.send(JSON.stringify(payload));
+        console.log(JSON.stringify(payload));
+        xhr.onreadystatechange = function () {
+            //Checks the request:
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                //Success:
+                if (xhr.status === 200) {
+                    console.log("Inserted");
+                }
+                else if (xhr.status === 409) {
+                    console.log("Cannot insert. Value already inserted.");
+                    alert("Book already wishlisted.");
+                } else {
+                    //Failure:
+                    console.error('Failed to make POST request:', xhr.status);
+                }
+            };
+        };
+    };
 });

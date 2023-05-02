@@ -92,8 +92,8 @@ app.post('/createUser', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
+            console.error('Failed to execute createUser query:', err);
+            res.status(500).send('Failed to execute createUser query');
         });
         //Insert into general table:
     const generalQuery = "INSERT INTO GeneralUser (ID) VALUES ('" + id + "');";
@@ -124,7 +124,7 @@ app.post('/checkUsername', (req, res) => {
         //Error occurred:
         .catch(err => {
             console.error('Username not found and incorrect query:', err);
-            res.status(500).send('Failed to execute query');
+            res.status(500).send('Failed to execute checkUsername query');
         });
 });
 
@@ -152,7 +152,7 @@ app.post('/checkWishlist', (req, res) => {
         //Error occurred:
         .catch(err => {
             console.error('Book not found and incorrect query:', err);
-            res.status(500).send('Failed to execute query');
+            res.status(500).send('Failed to execute checkWishlist query');
         });
 });
 
@@ -163,7 +163,7 @@ app.post('/checkCheckedOut', (req, res) => {
     //Display information:
     console.log(req.body);
     //Create the query:
-    const query = "SELECT id from Wishlist WHERE id = '" + id + "' AND bookID='" + bookID + "';";
+    const query = "SELECT id from checked_in_out WHERE id = '" + id + "' AND bookID='" + bookID + "';";
     //Query:
     client.query(query)
         //Successful:
@@ -174,23 +174,23 @@ app.post('/checkCheckedOut', (req, res) => {
             }
             else {
                 res.status(200).send('Failed to execute query');
-                console.log('Book already in wishlist: ' + query);
+                console.log('Book already in checked: ' + query);
             }
         })
         //Error occurred:
         .catch(err => {
             console.error('Book not found and incorrect query:', err);
-            res.status(500).send('Failed to execute query');
+            res.status(500).send('Failed to execute checkCheckedOut query');
         });
 });
 
 //Inserts a wishlistBook to wishlist table
 app.post('/insertWishlistBook', (req, res) => {
-    const { bookID, userID } = req.body;
+    const { bookID, ID } = req.body;
     console.log(req.body);
     res.send("Book stored successfully.");
     //Create the query:
-    const query = "INSERT INTO Wishlist (bookID, ID) VALUES ('" + bookID + "', '" + userID + "');";
+    const query = "INSERT INTO Wishlist (bookID, ID) VALUES ('" + bookID + "', '" + ID + "');";
     //Query:
     client.query(query)
         //Successful:
@@ -199,10 +199,10 @@ app.post('/insertWishlistBook', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
+            console.log(query)
+            console.error('Failed to execute insertWishlistBook query:', err);
+            res.status(500).send('Failed to execute insertWishlistBook query');
         });
-    
 });
 
 //Logins a user:
@@ -227,8 +227,8 @@ app.post('/loginUser', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
+            console.error('Failed to execute loginUser query:', err);
+            res.status(500).send('Failed to execute loginUser query');
         }); 
 });
 
@@ -246,8 +246,8 @@ app.post('/deleteFromWishlist', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
+            console.error('Failed to execute deleteFromWishlist query:', err);
+            res.status(500).send('Failed to execute deleteFromWishlist query');
         });
 
 });
@@ -290,8 +290,8 @@ app.post('/checkOut', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
+            console.error('Failed to execute checkOut query:', err);
+            res.status(500).send('Failed to execute checkOut query');
         });
 });
 
@@ -308,8 +308,8 @@ app.get('/wishlist', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
+            console.error('Failed to execute wishlist query:', err);
+            res.status(500).send('Failed to execute wishlist query');
         });
 });
 
@@ -326,8 +326,8 @@ app.get('/checked', (req, res) => {
         })
         //Error occurred:
         .catch(err => {
-            console.error('Failed to execute query:', err);
-            res.status(500).send('Failed to execute query');
+            console.error('Failed to execute checked query:', err);
+            res.status(500).send('Failed to execute checked query');
         });
 });
 
@@ -344,7 +344,7 @@ app.get('/getNextID', (req, res) => {
             })
             //Error occurred:
             .catch(err => {
-                console.error('Failed to execute query:', err);
+                console.error('Failed to execute getNextID query:', err);
                 res.status(500).send('Failed to execute query');
             });
 });
