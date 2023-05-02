@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }else{
             user = localStorage["currentUser"];
         }
-        onInsertIntoWishlistClick("Gq5hEAAAQBAJ");
         // onInsertIntoWishlistClick("7zWkCwAAQBAJ");
         // onInsertIntoWishlistClick("pMqSDwAAQBAJ");
         sendData();
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     //Parses the response as it is originally a string but needs to become the returned list from the database:
                     var response = JSON.parse(response)
                     for (var i = 0; i < response.length; i++) {
-                        if (response[i].id.trim() == localStorage.getItem("currentUser")) {
+                        if (response[i].id.trim() == user) {
                             //logs the row as a test:
                             console.log(response[i]);
                             if (response[i].bookid.trim() != 'undefined') {
@@ -66,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                         }
                     }
-
                     getBookData();
                 } else {
                     console.error('Failed to make POST request:', xhr.status);
@@ -174,11 +172,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function onDeleteButtonClick(constant) {
-        alert("Deleting book: " + constant);
-
         //Gets user typed values:
         var book = constant;
-        var id = localStorage.currentUser;
+        var id = user;
         console.log(constant);
         //Generates id:
         var xhr = new XMLHttpRequest();
@@ -240,36 +236,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function onInsertIntoWishlistClick(constant) {
-        alert("Inserting book: " + constant);
-        //Gets user typed values:
-        var book = constant;
-        var id = '0001';
-        console.log(constant);
-        //Generates id:
-        var xhr = new XMLHttpRequest();
-        //Runs the script:
-        xhr.open("POST", "http://localhost:3000/insertWishlistBook", true);
-        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-        //Set payload and send in string format:
-        var payload = ({ bookID: book, ID: id });
-        xhr.send(JSON.stringify(payload));
-        console.log(JSON.stringify(payload));
-        xhr.onreadystatechange = function () {
-            //Checks the request:
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                //Success:
-                if (xhr.status === 200) {
-                    console.log("Inserted");
-                }
-                else if (xhr.status === 409) {
-                    console.log("Cannot insert. Value already inserted.");
-                    alert("Book already wishlisted.");
-                } else {
-                    //Failure:
-                    console.error('Failed to make POST request:', xhr.status);
-                }
-            };
-        };
-    };
+    
 });

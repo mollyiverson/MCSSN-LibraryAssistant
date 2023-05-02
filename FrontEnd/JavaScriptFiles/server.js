@@ -219,6 +219,7 @@ app.post('/loginUser', (req, res) => {
         .then(result => {
             if (result.rows.length > 0) {
                 const userID = result.rows[0].ID;
+                localStorage["userID"] = userID;
                 res.json({ userID });
               } else {
                 // User not found:
