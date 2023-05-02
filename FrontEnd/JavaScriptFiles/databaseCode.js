@@ -155,11 +155,10 @@ sendData()
 function checkCheckedOut(bookID) {
 return new Promise(function(resolve, reject) {
     var xhr = new XMLHttpRequest();
-    var id = "0001";
     //Runs the script:
     xhr.open("POST", "http://localhost:3000/checkCheckedOut", true);
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    var payload = ({ bookID: bookID, id: id });
+    var payload = ({ bookID: bookID});
     xhr.send(JSON.stringify( payload ));
     xhr.onreadystatechange = function () {
         //Checks the request:
@@ -221,14 +220,13 @@ function onCheckOutButtonClick(constant) {
 alert("Checking Out Book: " + constant);
 //Gets user typed values:
 var book = constant;
-var id = '0001';
 console.log(constant);
 var xhr = new XMLHttpRequest();
 //Runs the script:
 xhr.open("POST", "http://localhost:3000/checkOut", true);
 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 //Set payload and send in string format:
-var payload = ({ id: id, bookID: book });
+var payload = ({ bookID: book });
 xhr.send(JSON.stringify( payload ));
 console.log(JSON.stringify(payload));
 xhr.onreadystatechange = function() {

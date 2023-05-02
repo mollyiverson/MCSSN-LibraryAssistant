@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var placeHldr = "/FrontEnd/Static(images)/image-not-found-icon.png";
     var row = document.createElement("div");
 
-    var user;
-
     // Calls functions when the next page, previous page, and back to the start buttons are clicked
     document.querySelector('.fa-circle').addEventListener('click', reset);
     document.querySelector('.fa-angle-right').addEventListener('click', nextPage);
@@ -23,12 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     window.onload = function () {
-        if (!localStorage.getItem("currentUser")) // the value of the current user should have been set when they log in
-        {
-            user = "0001";
-        }else{
-            user = localStorage["currentUser"];
-        }
         sendData();
     }
 
@@ -163,7 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function onDeleteButtonClick(constant) {
         //Gets user typed values:
         var book = constant;
-        var id = user;
         console.log(constant);
         //Generates id:
         var xhr = new XMLHttpRequest();
@@ -171,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
         xhr.open("POST", "http://localhost:3000/deleteFromCheckedOut", true);
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         //Set payload and send in string format:
-        var payload = ({ bookID: book, ID: id });
+        var payload = ({ bookID: book});
         xhr.send(JSON.stringify( payload ));
         console.log(JSON.stringify(payload));
         xhr.onreadystatechange = function() {
