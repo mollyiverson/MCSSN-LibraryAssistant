@@ -90,7 +90,6 @@ function onDeleteButtonClick(constant) {
 alert("Deleting book: " + constant);
 //Gets user typed values:
 var book = constant;
-var id = '0001';
 console.log(constant);
 //Generates id:
 var xhr = new XMLHttpRequest();
@@ -98,7 +97,7 @@ var xhr = new XMLHttpRequest();
 xhr.open("POST", "http://localhost:3000/deleteFromWishlist", true);
 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 //Set payload and send in string format:
-var payload = ({ bookID: book, ID: id });
+var payload = ({ bookID: book });
 xhr.send(JSON.stringify( payload ));
 console.log(JSON.stringify(payload));
 xhr.onreadystatechange = function() {
@@ -121,7 +120,6 @@ sendData()
 function onInsertIntoWishlistClick(constant) {
 //Gets user typed values:
 var book = constant;
-var id = '0001';
 console.log(constant);
 //Generates id:
 var xhr = new XMLHttpRequest();
@@ -129,7 +127,7 @@ var xhr = new XMLHttpRequest();
 xhr.open("POST", "http://localhost:3000/insertWishlistBook", true);
 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 //Set payload and send in string format:
-var payload = ({ bookID: book, ID: id });
+var payload = ({ bookID: book });
 xhr.send(JSON.stringify( payload ));
 console.log(JSON.stringify(payload));
 xhr.onreadystatechange = function() {
