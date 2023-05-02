@@ -1,7 +1,6 @@
 <html>
 
 <head>
-    <script src="/FrontEnd/JavaScriptFiles/login.js"></script>
  <!-- meta tags -->
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -54,11 +53,11 @@
         
         <div class="form">
             <div class ="username">
-              <input type="text" id="username2" name="username2" placeholder="Username">
+              <input type="text" id="username" name="username" placeholder="username">
             </div>
             <br>
             <div class ="password">
-            <input type="text" id="password2" name="password2" placeholder="Password">
+            <input type="text" id="password" name="password" placeholder="password">
             </div>
             <br>
             <button type="button" class="signin-btn" id="signin-btn" onclick="login()">Login</button>
@@ -73,8 +72,8 @@
         function login() 
         {
         //Gets user typed values:
-          var username2 = document.getElementById("username2").value;
-          var password2 = document.getElementById("password2").value;
+          var username2 = document.getElementById("username").value;
+          var password2 = document.getElementById("password").value;
           console.log(username2 + password2);
           //Generates id:
           var xhr = new XMLHttpRequest();
@@ -91,9 +90,11 @@
               //Success:
               if (xhr.status === 200) {
                 console.log("Logged In");
+                window.location.href = "/FrontEnd/Templates(html_files)/home2.html ";
               } else {
                 //Failure:
                 console.error('Failed to make POST request:', xhr.status);
+                alert("User not found");
               }
             };
           };
