@@ -2,7 +2,6 @@
 <html>
 
 <head>
-  <script src="/FrontEnd/JavaScriptFiles/signup.js"></script>
 <!-- meta tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,15 +48,15 @@
     
     <div class="form">
       <div class ="email">
-        <input type="text" id="email" name="email" placeholder="Email">
+        <input type="text" id="email" name="email" placeholder="email">
       </div>
       <br>
         <div class ="username">
-          <input type="text" id="username2" name="username2" placeholder="Username">
+          <input type="text" id="username" name="username" placeholder="username">
         </div>
         <br>
         <div class ="password">
-        <input type="text" id="password2" name="password2" placeholder="Password">
+        <input type="text" id="password" name="password" placeholder="password">
         </div>
         <br>
         <button type="button" class="signin-btn" id="signin-btn" onclick="createUser()">Sign Up</button>
@@ -101,7 +100,6 @@
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var id = "0000";
-    alert(email);
     //Generates id:
     getLargestID(function(id) {
       console.log(id);
