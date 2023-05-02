@@ -50,13 +50,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     //Parses the response as it is originally a string but needs to become the returned list from the database:
                     var response = JSON.parse(response)
                     for (var i = 0; i < response.length; i++) {
-                        if (response[i].id.trim() == user) {
-                            //logs the row as a test:
-                            console.log(response[i]);
-                            if (response[i].bookid.trim() != 'undefined') {
-                                books[bookCount] = response[i].bookid;
-                                bookCount++;
-                            }
+                        //logs the row as a test:
+                        console.log(response[i]);
+                        if (response[i].bookid.trim() != 'undefined') {
+                            books[bookCount] = response[i].bookid;
+                            bookCount++;
                         }
                     }
                     getBookData();
