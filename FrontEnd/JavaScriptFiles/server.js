@@ -27,7 +27,7 @@
 //--"/getNextID"
 //*****/
 
-var userID = "0000"
+var globalUserID = "0000"
 
 const express = require('express');
 const path = require('path');
@@ -78,12 +78,12 @@ client.connect()
 //*--Inserts a user based on information provided--*
 app.post('/createUser', (req, res) => {
     //Gets information from html file:
-    const { email, username, password, id } = req.body;
+    const { email, username, password } = req.body;
     //Display information:
     console.log(req.body);
     res.send("User created successfully.");
     //Create the query:
-    const query = "INSERT INTO Profile (email, username, password, id) VALUES ('" + email + "', '" + username + "', '" + password + "', '" + id + "');";
+    const query = "INSERT INTO Profile (email, username, password, id) VALUES ('" + email + "', '" + username + "', '" + password + "', '" + globalBookID + "');";
     //Query:
     client.query(query)
         //Successful:
@@ -159,11 +159,11 @@ app.post('/checkWishlist', (req, res) => {
 //Checks if a username is used
 app.post('/checkCheckedOut', (req, res) => {
     //Gets information from html file:
-    const { id, bookID } = req.body;
+    const { bookID } = req.body;
     //Display information:
     console.log(req.body);
     //Create the query:
-    const query = "SELECT id from checked_in_out WHERE id = '" + id + "' AND bookID='" + bookID + "';";
+    const query = "SELECT id from checked_in_out WHERE id = '" + globalBookID + "' AND bookID='" + bookID + "';";
     //Query:
     client.query(query)
         //Successful:
@@ -186,11 +186,11 @@ app.post('/checkCheckedOut', (req, res) => {
 
 //Inserts a wishlistBook to wishlist table
 app.post('/insertWishlistBook', (req, res) => {
-    const { bookID, ID } = req.body;
+    const { bookID } = req.body;
     console.log(req.body);
     res.send("Book stored successfully.");
     //Create the query:
-    const query = "INSERT INTO Wishlist (bookID, ID) VALUES ('" + bookID + "', '" + ID + "');";
+    const query = "INSERT INTO Wishlist (bookID, ID) VALUES ('" + bookID + "', '" + globalBookID + "');";
     //Query:
     client.query(query)
         //Successful:
@@ -218,9 +218,8 @@ app.post('/loginUser', (req, res) => {
         //Successful:
         .then(result => {
             if (result.rows.length > 0) {
-                const userID = result.rows[0].ID;
-                localStorage["userID"] = userID;
-                res.json({ userID });
+                globalUserID = result.rows[0].ID;
+                //res.json({ globalUserID });
               } else {
                 // User not found:
                 res.status(404).send('User not found');
@@ -230,16 +229,16 @@ app.post('/loginUser', (req, res) => {
         .catch(err => {
             console.error('Failed to execute loginUser query:', err);
             res.status(500).send('Failed to execute loginUser query');
-        }); 
+        })
 });
 
 //Deletes a book from the wishlist
 app.post('/deleteFromWishlist', (req, res) => {
     console.log(req.body);
-    const { bookID, ID } = req.body;
+    const { bookID } = req.body;
     
     //Create the query:
-    const query = "DELETE FROM wishlist WHERE bookID = '" + bookID + "' AND id = '" + ID + "';"; 
+    const query = "DELETE FROM wishlist WHERE bookID = '" + bookID + "' AND id = '" + globalBookID + "';"; 
     //Query:
     client.query(query)
         .then(result => {
@@ -255,10 +254,10 @@ app.post('/deleteFromWishlist', (req, res) => {
 
 app.post('/deleteFromCheckedOut', (req, res) => {
     console.log(req.body);
-    const { bookID, ID } = req.body;
+    const { bookID } = req.body;
     
     //Create the query:
-    const query = "DELETE FROM checked_in_out WHERE bookID = '" + bookID + "' AND id = '" + ID + "';"; 
+    const query = "DELETE FROM checked_in_out WHERE bookID = '" + bookID + "' AND id = '" + globalBookID + "';"; 
     //Query:
     client.query(query)
         .then(result => {
@@ -275,7 +274,7 @@ app.post('/deleteFromCheckedOut', (req, res) => {
 //Checkes Out a book
 app.post('/checkOut', (req, res) => {
     console.log(req.body);
-    const { id, bookID } = req.body;
+    const { bookID } = req.body;
     const date = new Date();
     if (date.getDate() > 28) {
         date.setDate(date.getDate() - 4) }
@@ -283,7 +282,7 @@ app.post('/checkOut', (req, res) => {
     const currentDate = date.toISOString().substr(0, 10);
     console.log(currentDate);
     //Create the query:
-    const query = "INSERT INTO checked_in_out VALUES ('" + id + "', '" + currentDate + "', 'true', '" + bookID + "');"
+    const query = "INSERT INTO checked_in_out VALUES ('" + globalBookID + "', '" + currentDate + "', 'true', '" + bookID + "');"
     //Query:
     client.query(query) 
         .then(result => {
