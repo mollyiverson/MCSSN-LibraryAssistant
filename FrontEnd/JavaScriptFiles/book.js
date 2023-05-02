@@ -213,7 +213,6 @@ function checkWishlist(bookID) {
 }
 //Inserts to CheckOut:
 function onCheckOutButtonClick(constant) {
-    alert("Checking Out Book: " + constant);
     //Gets user typed values:
     var book = constant
     console.log(constant);

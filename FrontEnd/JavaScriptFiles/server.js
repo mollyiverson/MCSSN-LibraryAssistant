@@ -90,7 +90,7 @@ app.post('/createUser', (req, res) => {
         //Successful:
         .then(result => {
             console.log('INSERTED: ' + query);
-            myData = (req.body[0].id)
+            myData = result.rows[0].id 
         })
         //Error occurred:
         .catch(err => {
@@ -226,10 +226,13 @@ app.post('/insertWishlistBook', (req, res) => {
     client.query(query)
         //Successful:
         .then(result => {
+            console.log(myData)
+
             console.log('INSERTED: ' + query);
         })
         //Error occurred:
         .catch(err => {
+            console.log(myData)
             console.log(query)
             console.error('Failed to execute insertWishlistBook query:', err);
             res.status(500).send('Failed to execute insertWishlistBook query');
@@ -249,7 +252,7 @@ app.post('/loginUser', (req, res) => {
         //Successful:
         .then(result => {
             if (result.rows.length > 0) {
-                myData.push(req.body[0].id)                //res.json({ globalUserID });
+                myData = result.rows[0].id            //res.json({ globalUserID });
               } else {
                 // User not found:
                 res.status(404).send('User not found');
@@ -329,7 +332,7 @@ app.post('/checkOut', (req, res) => {
 // *--Returns the wishlist table--*
 app.get('/wishlist', (req, res) => {
     // Gets query from the database:
-    client.query('SELECT * FROM wishlist')
+    client.query("SELECT * FROM wishlist WHERE id = '" + myData + "';")
         //Returns the query:
         .then(result => {
             console.log('Query result:', result.rows);
@@ -347,7 +350,7 @@ app.get('/wishlist', (req, res) => {
 // *--Returns the wishlist table--*
 app.get('/checked', (req, res) => {
     // Gets query from the database:
-    client.query('SELECT * FROM checked_in_out')
+    client.query("SELECT * FROM checked_in_out WHERE id = '" + myData + "';")
         //Returns the query:
         .then(result => {
             console.log('Query result:', result.rows);
