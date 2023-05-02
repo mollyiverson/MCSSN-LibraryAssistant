@@ -63,6 +63,14 @@ body {
   top: 20%;
 }
 
+.signup-button:hover {
+  color: #4d597e;
+}
+
+.login-button:hover {
+  color: #4d597e;
+}
+
 .topnav {
   background-color: #080e36;
   overflow: hidden;
