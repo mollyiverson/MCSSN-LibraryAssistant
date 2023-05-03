@@ -17,7 +17,7 @@ body {
   border-radius: 20px;
   position: relative;
   right: 0%;
-  top: -80%;
+  top: calc(-50% - 150px);
   height: 570px; 
   width: 400px; 
   padding: 60px;

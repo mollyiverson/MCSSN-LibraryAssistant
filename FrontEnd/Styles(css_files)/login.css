@@ -129,7 +129,7 @@ body {
 .login{
   position: relative;
   right: -5%;
-  top: -75%;
+  top: calc(-45% - 150px);
 }
 
 .forgot{
