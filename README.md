@@ -3,7 +3,7 @@
 ***
 
 ## Project Description
-We will develop a library assistant to assist librarians in managing patron services and a book database. This assistant will help with tasks including user registration, checking out books, book search, placing a hold, returning a book, and managing fines. 
+We will develop a library assistant to assist librarians in managing patron services and a book database. This assistant will help with tasks including user registration, checking out books, book search, placing a hold, creating a wishlist, viewing users, and taking a quiz to find a new book. 
 
 ## Project Members
 ### Molly Iverson (Contact)

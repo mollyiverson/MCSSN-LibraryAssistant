@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- include topnav styling, stylesheet and javascript -->
+  <link rel="stylesheet" href="/FrontEnd/Styles(css_files)/quiz.css"> <!-- change it later-->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="/FrontEnd/JavaScriptFiles/quiz.js"></script>
+
+  <div class="topnav">
+    <div class="logo"><img src="/FrontEnd/Static(images)/Library_Assistant_Logo.png" class="w3-round w3-image"
+        alt="book_logo" width="270" height="50"><b><i> </i></b></div>
+    <div class=menu>
+      <nav class="navbar navbar-expand-lg p-0" style="display: block;">
+
+        <!-- Other html files-->
+
+        <nav class="navbar navbar-expand-lg p-0" style="display: block;">
+          <a href="/FrontEnd/Templates(html_files)/search.html">Search</a>
+          <a href="/FrontEnd/Templates(html_files)/home2.html">Home</a>
+          <a href="/FrontEnd/Templates(html_files)/userPage.html">Profile</a>
+          <i class="fa fa-user-circle-o" style="font-size:30px; color:rgb(207, 223, 226)"> </i>
+        </nav>
+
+    </div>
+  </div>
+
+</head>
+
+<!-- start of body -->
+
+<body>
+
+  <!-- <h1> Book </h1> -->
+  <!-- #c680e2-->
+  <div class="w3-conatiner w3-center w3-text-white" style="background-color:#080e36;"> <!-- #c680e2 -->
+    <h1> QUIZ : Choose your mood and get a book recommendation!</h1>
+  </div>
+
+  <br>
+  <br>
+  <br>
+
+  <!--handle our form logic-->
+
+  <!-- <div class="quiz" name = "choiceForm" onsubmit="recommend()"> -->
+  <div class="quiz" id="choiceForm" onsubmit="recommend(event)">
+    <form>
+      <input class="box" type="radio" id="happy" name="book">
+      <label for="happy"> Happiness, joy, excitment </label><br>
+      <input class="box" type="radio" id="content" name="book">
+      <label for="content"> Contentment, satisfaction, relaxation </label><br>
+
+      <input class="box" type="radio" id="confused" name="book">
+      <label for="confused"> Confused </label><br>
+      <input class="box" type="radio" id="despair" name="book">
+      <label for="despair"> Despair, hopelessness, distress </label><br>
+
+      <input class="box" type="radio" id="anger" name="book">
+      <label for="anger"> Anger, frustration, hostility </label><br>
+      <input class="box" type="radio" id="fear" name="book">
+      <label for="fear"> Fear, apprehension, panic </label><br>
+
+      <input class="box" type="radio" id="sad" name="book">
+      <label for="sad"> Sadness, disappointment, grief </label><br>
+      <input class="box" type="radio" id="guilt" name="book">
+      <label for="guilt"> Guilt, regret, shame </label><br>
+
+      <input type="submit" value="Submit The Form">
+    </form>
+
+  </div> <!--Quiz div end-->
+
+</body>
+<!-- end of body -->
+
+</html>

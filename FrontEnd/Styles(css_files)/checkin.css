@@ -1,0 +1,40 @@
+#checkIn-container {
+    background-color: rgb(255, 255, 255);
+}
+
+#checkIn-container :hover {
+    color: #727FA8;
+}
+
+.book-list {
+    margin-top: 5vh;
+    margin-left: 25vw;
+    width: 75%;
+    height: 100%;
+    /* visibility: hidden; */
+}
+
+.book-list h5 {
+    font: normal 400 15px/1 'Josefin Sans', sans-serif;
+    font-weight: bold;
+}
+
+.book-list h6 {
+    font: normal 400 12px/1 'Josefin Sans', sans-serif;
+}
+
+.col-md-8, .col-md-2 {
+    display: flex;
+    align-items: center;
+}
+
+.book-list button {
+    background-color: #080e36;
+    font-size: 20px;
+}
+
+.book-list .card {
+    background-color: #d2d0d0;
+    justify-content: center;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<!-- meta tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- include topnav, styling -->
+  <link rel="stylesheet" href="/FrontEnd/Styles(css_files)/feedback.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <div class="topnav">
+    <div class="logo"><img src="/FrontEnd/Static(images)/Library_Assistant_Logo.png" class="w3-round w3-image" 
+      alt="book_logo" width="270" height="50" ><b><i> </i></b></div>
+  <div class=menu>
+  <nav class="navbar navbar-expand-lg p-0" style="display: block;">
+
+
+   <!-- Other html files-->
+
+   <a href="/FrontEnd/Templates(html_files)/home_page.html">Home</a> 
+   <a href="/FrontEnd/Templates(html_files)/about_us.html">About us</a>
+ 
+  </div>
+  </div>
+
+</head>
+
+<!-- start of body -->
+<body background="/FrontEnd/Static(images)/therepy.jpg">
+
+    <div id="section03"> 
+         <div class="w3-conatiner w3-center w3-text-white" style="background-color: #080e36"> <!-- 6acfca-->
+          <h1> Contact Us </h1>
+        </div>
+        
+          <!-- Adding the info to get responses -->
+         <form action = "https://formspree.io/f/xlekwdww" method = "POST">
+          
+          <div class="form-group"> 
+          <div class="row">
+    
+            <div class="col">
+                <input type="text" name="full name" class="form-control" placeholder="Full Name" required>
+              </div>
+
+               <div class="col"> 
+                <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <textarea placeholder="Your Message" class="form-control" name="Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+          </form>
+
+    </div>
+  
+<footer style="background-color:  #080e36">
+  <p style="color:white"> MCSSN </p>
+  <!-- We can add the creator names instead-->
+</footer>
+
+
+</body>
+<!-- end of body -->
+
+</html>

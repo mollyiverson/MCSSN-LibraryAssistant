@@ -1,0 +1,109 @@
+<html>
+
+<head>
+ <!-- meta tags -->
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+ <!-- include topnav styling and stylesheet -->
+  <link rel="stylesheet" href="/FrontEnd/Styles(css_files)/login.css">
+   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+   <div class="topnav">
+    <div class="logo"><img src="/FrontEnd/Static(images)/Library_Assistant_Logo.png" class="w3-round w3-image" 
+      alt="book_logo" width="270" height="50" ><b><i> </i></b></div>
+  <div class=menu>
+  <nav class="navbar navbar-expand-lg p-0" style="display: block;">
+ 
+  <!-- Other references -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&family=Rubik&family=Titan+One&display=swap" rel="stylesheet">
+
+          <!-- Other menu options from front page -->
+         
+          <a href="/FrontEnd/Templates(html_files)/home_page.html">Home</a> 
+          <a href="/FrontEnd/Templates(html_files)/about_us.html">About us</a>
+          <a href="/FrontEnd/Templates(html_files)/feedback.html">Contact Us</a>
+ 
+   </div>
+   </div>
+
+    </head>
+
+     <!-- Start of the body -->
+
+    <body>
+
+      <body style="background-image: url('/FrontEnd/Static(images)/login-background.jpg'); background-size: 100% 100%;">
+    
+        <div class="singupimg">
+          <img src="/FrontEnd/Static(images)/login_image.png" allign="left" alt="welcome_image2" width=40%> 
+        </div>
+        <div class = "login">
+        <div class="login-text">
+            <h1>Log In</h1>
+        </div>
+
+        <div class="no-account">
+          <p>Don't have an account? <a href="/FrontEnd/Templates(html_files)/signup.html "><b>Sign Up</b></a></p>
+        </div>
+        
+        <div class="login-div">
+        
+        <div class="form">
+            <div class ="username">
+              <input type="text" id="username" name="username" placeholder="username">
+            </div>
+            <br>
+            <div class ="password">
+            <input type="text" id="password" name="password" placeholder="password">
+            </div>
+            <br>
+            <button type="button" class="signin-btn" id="signin-btn" onclick="login()">Login</button>
+            
+          </div>
+        </div>
+
+               <!-- JavaScript -->
+
+      <script>
+       
+        function login() 
+        {
+        //Gets user typed values:
+          var username2 = document.getElementById("username").value;
+          var password2 = document.getElementById("password").value;
+          console.log(username2 + password2);
+          //Generates id:
+          var xhr = new XMLHttpRequest();
+          //Runs the script:
+          xhr.open("POST", "http://localhost:3000/loginUser", true);
+          xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+          //Set payload and send in string format:
+          var payload = ({ username: username2, password: password2 });
+          xhr.send(JSON.stringify( payload ));
+          console.log(JSON.stringify(payload));
+          xhr.onreadystatechange = function() {
+            //Checks the request:
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+              //Success:
+              if (xhr.status === 200) {
+                console.log("Logged In");
+                window.location.href = "/FrontEnd/Templates(html_files)/home2.html ";
+              } else {
+                //Failure:
+                console.error('Failed to make POST request:', xhr.status);
+                alert("User not found");
+              }
+            };
+          };
+        };
+  
+
+      </script>
+
+    </body>
+
+</html>
+

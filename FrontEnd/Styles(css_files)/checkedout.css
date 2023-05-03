@@ -1,0 +1,42 @@
+#myissues-container
+{
+    background-color:  rgb(255, 255, 255);
+}
+
+#myissues-container a:hover
+{
+    color: #727FA8;
+
+}
+
+.book-list {
+    margin-top: 5vh;
+    margin-left: 25vw;
+    width: 75%;
+    height: 100%;
+    /* visibility: hidden; */
+}
+
+.book-list h5 {
+    font: normal 400 20px/1 'Josefin Sans', sans-serif;
+    font-weight: bold;
+}
+
+.book-list button
+{
+    background-color: #080e36;
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
+.book-list .card {
+    background-color: #d2d0d0;
+    margin-bottom: 10%;
+}
+
+
+
+  
+  
+ 
