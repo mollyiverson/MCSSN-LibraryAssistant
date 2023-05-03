@@ -57,7 +57,7 @@ h3 {
     text-align: center;
 }
 
-#search{
+/* #search{
   color:white;    
   position: relative;  
   font-size: 25px; 
@@ -85,6 +85,18 @@ h3 {
   text-align: center;
   top: -830px;
   right: -490px;
+}  */
+
+.description {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,0.7);
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  padding: 10px;
 }
 
 ul{
@@ -134,12 +146,21 @@ footer{
     width: 700px;
     background-color: #464646;
 }
-
 /* making circular images for search, quiz, and profile*/
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 150px;
+  margin-top: 50px;
+  flex-direction: row;
+}
+
 .image1 {
   position: relative; 
-  width: 300px; 
-  height: 300px; 
+  width: 350px; 
+  height: 350px; 
   overflow: hidden; 
   border-radius: 50%; 
 }
@@ -151,13 +172,10 @@ footer{
 
 .image2 {
   position: relative; 
-  width: 300px; 
-  height: 300px; 
+  width: 350px; 
+  height: 350px; 
   overflow: hidden; 
   border-radius: 50%; 
-  align-items: center;
-  right: -960px;
-  top: -300px;
 }
 
 .image2 img{ 
@@ -167,13 +185,10 @@ footer{
 
 .image3 {
   position: relative; 
-  width: 300px; 
-  height: 300px; 
+  width: 350px; 
+  height: 350px; 
   overflow: hidden; 
   border-radius: 50%; 
-  margin-left: auto;
-  margin-right: auto;
-  top: -600px;
 }
 
 .image3 img { 
