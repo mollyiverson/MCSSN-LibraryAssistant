@@ -79,21 +79,22 @@ client.connect()
 //*--Inserts a user based on information provided--*
 app.post('/createUser', (req, res) => {
     //Gets information from html file:
-    const { email, username, password } = req.body;
+    const { email, username, password, id } = req.body;
     //Display information:
     console.log(req.body);
     res.send("User created successfully.");
     //Create the query:
-    const query = "INSERT INTO Profile (email, username, password, id) VALUES ('" + email + "', '" + username + "', '" + password + "', '" + myData + "');";
+    const query = "INSERT INTO Profile (email, username, password, id) VALUES ('" + email + "', '" + username + "', '" + password + "', '" + id + "');";
     //Query:
     client.query(query)
         //Successful:
         .then(result => {
             console.log('INSERTED: ' + query);
-            myData = result.rows[0].id 
+            myData = id
         })
         //Error occurred:
         .catch(err => {
+            console.log(query)
             console.error('Failed to execute createUser query:', err);
             res.status(500).send('Failed to execute createUser query');
         });
@@ -109,7 +110,7 @@ app.post('/checkUsername', (req, res) => {
     //Display information:
     console.log(req.body);
     //Create the query:
-    const query = "SELECT username from Profile WHERE username = '" + username + "';";
+    const query = "SELECT username from Profile WHERE username = '" + id + "';";
     //Query:
     client.query(query)
         //Successful:
