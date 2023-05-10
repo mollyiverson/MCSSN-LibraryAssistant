@@ -31,21 +31,16 @@ View wishlist
 
 ## Team Members
 ### Molly Iverson
-ID: 11775649
 Email: molly.s.iverson@wsu.edu 
 
 ### Skyllar Estill 
-ID: 11750544
 Email: skyllar.estill@wsu.edu
 
 ### Sierra Pine
-ID: 11761138
 Email: sierra.pine@wsu.edu 
 
 ### Caitlin Graves
-ID: 11768945
 Email: caitlin.graves@wsu.edu 
 
 ### Naomi Dion-Gokan
-ID: 11755265
 Email: naomi.dion-gokan@wsu.edu
