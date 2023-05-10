@@ -31,16 +31,21 @@ View wishlist
 
 ## Team Members
 ### Molly Iverson
-Email: molly.s.iverson@wsu.edu 
+https://github.com/mollyiverson
+Email: molly.s.iverson@wsu.edu
 
 ### Skyllar Estill 
+https://github.com/skyllare
 Email: skyllar.estill@wsu.edu
 
 ### Sierra Pine
+https://github.com/sierratp
 Email: sierra.pine@wsu.edu 
 
 ### Caitlin Graves
+https://github.com/caitlingraves
 Email: caitlin.graves@wsu.edu 
 
 ### Naomi Dion-Gokan
+https://github.com/awishto-write
 Email: naomi.dion-gokan@wsu.edu
