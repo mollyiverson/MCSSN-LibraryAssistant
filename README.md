@@ -9,7 +9,7 @@
 4. [Team Members](#team-members)
 
 ## Project Description
-A library assistant appication used to help librarians manage patron services and a book database. This assistant helps with tasks including user registration, checking out books, book search, placing a hold, creating a wishlist, viewing users, and taking a quiz to find a new book. 
+A library assistant application used to help librarians manage patron services and a book database. This assistant helps with tasks including user registration, checking out books, book search, placing a hold, creating a wishlist, viewing users, and taking a quiz to find a new book. 
 
 ## How to use
 We will be taking down the database server used for this project soon after project completion. All features except for saving checked-out and wishlist books are still available. You can clone the repository or use our deployment link with Vercel.
